@@ -14,11 +14,10 @@ import vizbook.web.WebLoggingTask;
 public class LogDemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private WebLoggingTask loggingTask;
+	private WebLoggingTask loggingTask = new RandomLogger();
        
     public LogDemoServlet() {
-        super();
-        loggingTask = new RandomLogger();
+        super();        
         loggingTask.start();        
     }
 
