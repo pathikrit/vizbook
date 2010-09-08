@@ -20,6 +20,8 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 		})
 public class FacebookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private FacebookDataImporter dataImportTask;
        
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
@@ -45,9 +47,13 @@ public class FacebookServlet extends HttpServlet {
     	   return;
        }
        
-       new FVizsterXMLWriter(client, response.getWriter());	
+       dataImportTask = new VizsterXMLWriter(client);	
+       dataImportTask.run();
        
-       //request.getRequestDispatcher("HelloWorld.jsp").forward(request, response);
-       response.getWriter().println("Done");
+       request.getRequestDispatcher("FacebookDataViewer.jsp").forward(request, response);
+	}
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().write(dataImportTask.getLog());		
 	}
 }
