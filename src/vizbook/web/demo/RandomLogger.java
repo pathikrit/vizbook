@@ -1,6 +1,6 @@
-package vizbook.demo;
+package vizbook.web.demo;
 
-import vizbook.WebLoggingTask;
+import vizbook.web.WebLoggingTask;
 
 /**
  * A simple test logger that logs numbers from 0 to 99

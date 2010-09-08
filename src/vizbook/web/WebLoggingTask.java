@@ -1,6 +1,6 @@
-package vizbook;
+package vizbook.web;
 
-import vizbook.demo.LogDemoServlet;
+import vizbook.web.demo.LogDemoServlet;
 
 /**
  * Every thread spawned by a servlet that needs to output should implement the run method of this class. 

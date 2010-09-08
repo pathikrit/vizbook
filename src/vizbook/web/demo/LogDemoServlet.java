@@ -1,4 +1,4 @@
-package vizbook.demo;
+package vizbook.web.demo;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import vizbook.WebLoggingTask;
+import vizbook.web.WebLoggingTask;
 
 @WebServlet("/LogDemo")
 public class LogDemoServlet extends HttpServlet {
