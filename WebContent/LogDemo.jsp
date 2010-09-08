@@ -9,6 +9,7 @@
 	<script language="javascript" SRC="ajax.js"></script>				
 	<script type="text/javascript">		 			
 		function fetchLogs() {
+			//TODO: if responseText is "done", stop refreshing
 			sendRequest("POST", "LogDemo",
 				function(responseText) {	
                     var logDiv = document.getElementById("log1");  			

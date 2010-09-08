@@ -21,7 +21,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 public class FacebookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private FacebookDataImporter dataImportTask;
+	private FacebookDataImporter dataImportTask = null;
        
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
@@ -54,6 +54,7 @@ public class FacebookServlet extends HttpServlet {
 	}
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write(dataImportTask.getLog());		
+    	if(dataImportTask != null)
+    		response.getWriter().write(dataImportTask.getLog());		
 	}
 }

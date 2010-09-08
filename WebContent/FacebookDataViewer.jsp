@@ -9,7 +9,7 @@
 			<fb:login-button length='long' onlogin="update_user_box();"></fb:login-button>
 		</div>
 	</form>    
-
+	<!-- TODO: Remove this button, make this page nicer -->
 	<div id="log1" class="logs"></div>
 	</body>
 	<script type="text/javascript">

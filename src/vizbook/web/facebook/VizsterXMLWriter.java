@@ -40,6 +40,7 @@ public class VizsterXMLWriter extends FacebookDataImporter {
 	
 	@Override
 	public void run() {
+		//TODO: Enforce code style
 		StringBuilder nodeRegion = new StringBuilder(), edgeRegion = new StringBuilder(); // get rid of this
 		int V = 0, E = 0;
 		try {

@@ -13,16 +13,18 @@ public abstract class WebLoggingTask extends Thread {
 	public synchronized String getLog() {
 		String ret = log.toString();
 		log = log.delete(0, ret.length());
-		return ret;
+		return ret;		
 	}
 	
 	public synchronized void logError(String s) {
 		log(String.format("<b>%s</b>", s));
 	}
 	
-	public synchronized void log(String s) {
+	public synchronized void log(String s) {		
 		log.append("<br/>").append(s);
 	}
+	
+	//TODO: add statuses - running, error etc
 	
 	public abstract void run();
 }
