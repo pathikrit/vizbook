@@ -3,10 +3,9 @@ package vizbook.web.demo;
 import vizbook.web.WebLoggingTask;
 
 /**
- * A simple test logger that logs numbers from 0 to 99
- * Every odd number is logged as an error
+ * A simple test logger that logs numbers from 0 to 99 every 1 second
+ * Every odd number is logged as an error  
  * 
- * @author rick
  */
 public class RandomLogger extends WebLoggingTask {
 	
