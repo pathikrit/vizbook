@@ -18,8 +18,12 @@ public class LogDemoServlet extends HttpServlet {
        
     public LogDemoServlet() {
         super();        
-        loggingTask.start();        
+        loggingTask.start();
     }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().println("Done");		
+	}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().write(loggingTask.getLog());		
