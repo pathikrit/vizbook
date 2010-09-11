@@ -12,14 +12,14 @@ import javax.servlet.http.HttpSession;
 import com.google.code.facebookapi.FacebookException;
 import com.google.code.facebookapi.FacebookJsonRestClient;
 
+@SuppressWarnings("serial")
 @WebServlet(
 		urlPatterns = {"/FacebookMain"}, 
 		initParams = { 
 				@WebInitParam(name = "API_KEY", value = "e19760c3ea4e06f07d417f30a59a81da", description = "API Key"), 
 				@WebInitParam(name = "SECRET_KEY", value = "f9865fdf21a2234964841aeaaa561a8d", description = "Application Secret")
 		})
-public class FacebookServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class FacebookServlet extends HttpServlet {	
 	
 	private FacebookDataImporter dataImportTask = null;
        
