@@ -1,13 +1,18 @@
 package vizbook.web.facebook;
 
 import java.util.*;
-
-import org.apache.commons.lang.StringEscapeUtils;
 import org.json.*;
 import com.google.code.facebookapi.*;
 
-public class VizsterXMLWriter extends FacebookDataImportTask {	
+public class VizsterXMLWriter extends FacebookDataImportTask {
 	
+	// In debug mode fetches only up to 10 vertices
+	private boolean DEBUG = false;
+	
+	public VizsterXMLWriter(FacebookJsonRestClient client, String name, String extension) {
+		super(client, name, extension);		
+	}
+
 	@SuppressWarnings("serial")
 	private static HashMap<ProfileField, String> fields = new HashMap<ProfileField, String>() {{
 	    put(ProfileField.UID, "uid");
@@ -32,45 +37,43 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 	    put(ProfileField.ABOUT_ME, "about");
 	    put(ProfileField.SIGNIFICANT_OTHER_ID, "want_to_meet");
 	    put(ProfileField.PIC_SMALL, "photourl");
-	}};
-	
-	public VizsterXMLWriter(FacebookJsonRestClient client) {
-		super(client);
-	}
-	
+	}};	
+
 	@Override
-	public void run() {
-		//TODO: Enforce code style
-		StringBuilder nodeRegion = new StringBuilder(), edgeRegion = new StringBuilder(); // get rid of this
+	public void fetchData() {
+		//TODO: Enforce code style		
 		int V = 0, E = 0;
 		try {
 			JSONArray friends = client.friends_get();
 			ArrayList<Long> friendIds = new ArrayList<Long>();
 			friendIds.add(client.users_getLoggedInUser());
 			V = friends.length() + 1;	
-			V = 25;
+			if(DEBUG) V = Math.min(V, 10);
 			for(int i = 1; i < V; i++) {
 				friendIds.add(friends.getLong(i-1));
 			}
 			log("Got " + V + " friends (including self): ");
 			
-			JSONArray results = client.users_getInfo(friendIds, fields.keySet());			
+			write("<graph directed=\"0\">");
+			
+			JSONArray results = client.users_getInfo(friendIds, fields.keySet());
+			
 			for(int i = 0; i < V; i++) {
 				JSONObject u = results.getJSONObject(i);		
 				String name = u.getString(fields.get(ProfileField.NAME));
 				log(i + ". Processing " + name);
 				
-				StringBuilder node = new StringBuilder();
-				node.append("&nbsp&nbsp");
-				node.append(StringEscapeUtils.escapeHtml("<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">"));
+				//TODO: Implement FacebookException skip here				
+				write("\t<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">");
 				for(ProfileField pf : fields.keySet()) {
 					String value = u.getString(pf.fieldName());
 					if(value != null && value.length() > 0 && !value.equalsIgnoreCase("null"))
-						node.append("<br/>&nbsp&nbsp&nbsp&nbsp").append(StringEscapeUtils.escapeHtml(String.format("<att name=\"%s\" value=\"%s\"/>", fields.get(pf), value)));
+						write(String.format("\t\t<att name=\"%s\" value=\"%s\"/>", fields.get(pf), value));
 				}		    
-				node.append("<br/>&nbsp&nbsp").append(StringEscapeUtils.escapeHtml("</node>"));
-				nodeRegion.append(node);
+				write("\t</node>");				
+			}
 			
+			for(int i = 0; i < V; i++) {
 				long friendId = friendIds.get(i);				
 				
 				ArrayList<Long> fakeList = new ArrayList<Long>();
@@ -83,21 +86,16 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 					if(Boolean.parseBoolean(areFriend.getString("are_friends"))) {
 						long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");
 						E++;
-						edgeRegion.append("<br/>&nbsp&nbsp").append(StringEscapeUtils.escapeHtml(String.format("<edge source=\"%d\" target=\"%d\"></edge>", id1, id2)));
+						write(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
 					}
 				}
 			}
 			
-			log("<br/>Got " + E +  " edges");
+			write("</graph>");			
+			log("Got " + E +  " edges");
 			
 		} catch(Exception e) {
 			logError(e.toString());
-		} finally {			
-			log("-------------------");
-			log(StringEscapeUtils.escapeHtml("<graph directed=\"0\">"));			
-			log(nodeRegion.toString());			
-			log(edgeRegion.toString());
-			log(StringEscapeUtils.escapeHtml("</graph>"));
 		}		
 	}
 }

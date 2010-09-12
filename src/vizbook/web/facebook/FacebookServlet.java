@@ -47,7 +47,7 @@ public class FacebookServlet extends HttpServlet {
     	   return;
        }
        
-       dataImportTask = new VizsterXMLWriter(client);	
+       dataImportTask = new VizsterXMLWriter(client, "vizster", "xml");	
        dataImportTask.run();
        
        request.getRequestDispatcher("FacebookDataViewer.jsp").forward(request, response);
