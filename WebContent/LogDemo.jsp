@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-	<head><title>Log Demo</title></head>
+	<head>
+		<title>Log Demo</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
 	
 	<body onload="setInterval('fetchLogs()', 2000)">
-		<div id="log1" class="logs"></div>		
+		<div id="console1" class="console"></div>		
 	</body>
 	
 	<script language="javascript" src="ajax.js"></script>				
 	<script type="text/javascript">		 			
 		function fetchLogs() {
-			//TODO: better CSS3 styles log viewer
 			sendRequest("POST", "LogDemo",
 				function(responseText) {	
-                    var logDiv = document.getElementById("log1");  			
+                    var logDiv = document.getElementById("console1");  			
 					var html = logDiv.innerHTML;								
-					logDiv.innerHTML = html + responseText;
+					logDiv.innerHTML = responseText + html;
 				}
 			);
 		}

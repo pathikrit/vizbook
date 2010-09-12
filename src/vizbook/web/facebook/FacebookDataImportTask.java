@@ -40,7 +40,7 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	protected abstract void fetchData();
 	
 	@Override
-	public void run() {
+	public void task() {
 		fetchData();
 		cleanUp();
 	}
@@ -54,6 +54,6 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 			} catch (IOException e) {
 				logError("Could not close output file: " + e.getLocalizedMessage());
 			}
-		}
+		}		
 	}
 }

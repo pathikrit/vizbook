@@ -1,5 +1,7 @@
 package vizbook.web;
 
+import java.util.ArrayDeque;
+
 import vizbook.web.demo.LogDemoServlet;
 
 /**
@@ -8,23 +10,49 @@ import vizbook.web.demo.LogDemoServlet;
  * 
  */
 public abstract class WebLoggingTask extends Thread {
-	private StringBuffer log = new StringBuffer();
-	
-	public synchronized String getLog() {
-		String ret = log.toString();
-		log = log.delete(0, ret.length());
-		return ret;		
+	private static enum Status {
+		Running, Done, Stopped, Error
 	}
 	
-	public synchronized void logError(String s) {
+	private Status status = Status.Running;
+	
+	private ArrayDeque<String> messageQueue = new ArrayDeque<String>();	
+	
+	public final synchronized String getLog() {
+		StringBuilder ret = new StringBuilder();
+		while(!messageQueue.isEmpty()) {
+			String entry = messageQueue.removeLast();
+			ret.append("<br/>").append(entry);
+		}		
+		return ret.toString();		
+	}
+	
+	public final synchronized void logError(String s) {
 		log(String.format("<b>%s</b>", s));
 	}
 	
-	public synchronized void log(String s) {		
-		log.append("<br/>").append(s);
+	public final synchronized void log(String s) {		
+		messageQueue.addLast(s);
 	}
 	
-	//TODO: add statuses - running, error etc
+	public final void run() {
+		while(isRunning()) {
+			task();
+			done();
+		}
+	}
 	
-	public abstract void run();
+	public abstract void task();
+	
+	public final void stopThread() {
+		status = Status.Stopped;
+	}
+	
+	public final boolean isRunning() {
+		return status == Status.Running;
+	}
+	
+	private final void done() {
+		status = Status.Done;
+	}	
 }

@@ -22,7 +22,8 @@ function sendRequest(method, uri, callback) {
 	
 	xmlHttp.onreadystatechange = function() {
 		if(xmlHttp.readyState == 4) {
-			if(xmlHttp.status == 200) { 
+			if(xmlHttp.status == 200) {
+				//TODO: Send back xmlHttp instead if multiple log jobs in a page
 				callback(xmlHttp.responseText);
 			} else { 
 				// alert("Error during AJAX call. Please try again.");

@@ -10,7 +10,7 @@ import vizbook.web.WebLoggingTask;
 public class RandomLogger extends WebLoggingTask {
 	
 	@Override
-	public void run() {
+	public void task() {		
 		for(int i = 0; i < 100; i++) {
 			if(i%2 == 0)
 				log(""+i);
@@ -21,6 +21,6 @@ public class RandomLogger extends WebLoggingTask {
 			} catch (InterruptedException e) {				
 				logError(e.getMessage());
 			}
-		}		
+		}
 	}
 }

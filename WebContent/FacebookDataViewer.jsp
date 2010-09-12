@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-	<head><title>Test</title></head>
+	<head>
+		<title>XML Import for Vizster</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
 	
 	<body onload="setInterval('fetchLogs()', 2000)">		
-		<div id="log1" class="logs"></div>
+		<div id="console1" class="console"></div>
 	</body>
 	
-	<script language="javascript" SRC="ajax.js"></script>				
+	<script language="javascript" src="ajax.js"></script>				
 	<script type="text/javascript">		 			
 		function fetchLogs() {
 			sendRequest("POST", "FacebookMain",
 				function(responseText) {	
-                    var logDiv = document.getElementById("log1");  			
+                    var logDiv = document.getElementById("console1");  			
 					var html = logDiv.innerHTML;								
-					logDiv.innerHTML = html + responseText;
+					logDiv.innerHTML = responseText + html;
 				}
 			);
 		}

@@ -1,6 +1,7 @@
 package vizbook.web.demo;
 
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +23,14 @@ public class LogDemoServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().println("Done");		
+        doPost(request, response);		
 	}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write(loggingTask.getLog());		
+    	Writer writer = response.getWriter();
+    	if(loggingTask.isRunning())
+    		writer.write(loggingTask.getLog());
+    	else
+    		writer.write("Done!");
 	}
 }
