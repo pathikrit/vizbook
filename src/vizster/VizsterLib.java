@@ -1,12 +1,18 @@
 package vizster;
 
 import java.awt.Component;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.Normalizer;
+import java.util.Scanner;
 import java.util.Timer;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
 
 import edu.berkeley.guir.prefuse.VisualItem;
 import edu.berkeley.guir.prefuse.graph.Graph;
@@ -84,9 +90,31 @@ public class VizsterLib {
     public static final Graph loadGraph(String graphfile) 
     	throws FileNotFoundException, IOException
     {
-        XMLGraphReader gl = new XMLGraphReader();
-        return gl.loadGraph(graphfile);
+    	XMLGraphReader gl = new XMLGraphReader();
+    	try {
+    		return gl.loadGraph(graphfile);
+    	} catch(MalformedByteSequenceException mbse) {
+    		System.err.println(graphfile + " contains a bad character. Reformatting file and trying again...");    		
+    		File inputFile = new File(graphfile);
+    		FileWriter writer = new FileWriter(graphfile + ".reformat");
+    		for(Scanner sc = new Scanner(inputFile); sc.hasNext(); ) {
+    			String line = sc.nextLine();
+    			writer.write(removeDiatrecials(line));
+    		}    		
+    		writer.flush();
+    		writer.close();    		
+    		return gl.loadGraph(graphfile + ".reformat");
+    	}
     } //
+    
+    public static String removeDiatrecials(String s) {
+        s = Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    	String ret = "";
+    	for(char c : s.toCharArray())
+    		if(c < 128) 
+    			ret += c;    	
+    	return ret;
+    }
     
     public static final void setLookAndFeel() {
         try {
