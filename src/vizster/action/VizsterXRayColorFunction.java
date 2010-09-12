@@ -185,7 +185,7 @@ public class VizsterXRayColorFunction extends ColorFunction {
             return curMap.getColor(Math.min(1.0, ((double)age)/MAX_AGE));
         } case GENDER: {
             // get color for gender
-            double v = "Male".equals(val) ? 1.0 : 0.0;
+            double v = GENDERS[1].equalsIgnoreCase(val) ? 1.0 : 0.0;
             return genderMap.getColor(v);
         } case STATUS: {
             // get color for relationship status
