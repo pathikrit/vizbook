@@ -21,7 +21,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 		})
 public class FacebookServlet extends HttpServlet {	
 	
-	private FacebookDataImporter dataImportTask = null;
+	private FacebookDataImportTask dataImportTask = null;
        
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();

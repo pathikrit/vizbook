@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.json.*;
 import com.google.code.facebookapi.*;
 
-public class VizsterXMLWriter extends FacebookDataImporter {	
+public class VizsterXMLWriter extends FacebookDataImportTask {	
 	
 	@SuppressWarnings("serial")
 	private static HashMap<ProfileField, String> fields = new HashMap<ProfileField, String>() {{
@@ -47,7 +47,8 @@ public class VizsterXMLWriter extends FacebookDataImporter {
 			JSONArray friends = client.friends_get();
 			ArrayList<Long> friendIds = new ArrayList<Long>();
 			friendIds.add(client.users_getLoggedInUser());
-			V = friends.length() + 1;			
+			V = friends.length() + 1;	
+			V = 25;
 			for(int i = 1; i < V; i++) {
 				friendIds.add(friends.getLong(i-1));
 			}
