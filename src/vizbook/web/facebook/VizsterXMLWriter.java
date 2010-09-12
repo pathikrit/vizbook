@@ -58,36 +58,56 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 			
 			JSONArray results = client.users_getInfo(friendIds, fields.keySet());
 			
-			for(int i = 0; i < V; i++) {
-				JSONObject u = results.getJSONObject(i);		
-				String name = u.getString(fields.get(ProfileField.NAME));
-				log(i + ". Processing " + name);
-				
-				//TODO: Implement FacebookException skip here				
-				write("\t<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">");
-				for(ProfileField pf : fields.keySet()) {
-					String value = u.getString(pf.fieldName());
-					if(value != null && value.length() > 0 && !value.equalsIgnoreCase("null"))
-						write(String.format("\t\t<att name=\"%s\" value=\"%s\"/>", fields.get(pf), value));
-				}		    
-				write("\t</node>");				
+			//TODO: More informative logError(String msg, Error e)
+			for(int i = 0; i < V; i++) {				
+				try {
+					StringBuilder node = new StringBuilder();
+					JSONObject u = results.getJSONObject(i);
+					String name = u.getString(fields.get(ProfileField.NAME));
+					log(i + ". Processing attributes of " + name);
+									
+					node.append("\t<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">");
+					for(ProfileField pf : fields.keySet()) {
+						String value = u.getString(pf.fieldName());
+						if(value != null && value.length() > 0 && !value.equalsIgnoreCase("null"))
+							node.append(String.format("\n\t\t<att name=\"%s\" value=\"%s\"/>", fields.get(pf), value));
+					}		    
+					node.append("\n\t</node>");
+					
+					write(node.toString());
+				} catch(JSONException je) {
+					logError(je.getLocalizedMessage());
+				}
 			}
+			log("Finished writing node attributes");
 			
 			for(int i = 0; i < V; i++) {
-				long friendId = friendIds.get(i);				
-				
-				ArrayList<Long> fakeList = new ArrayList<Long>();
-				for(int j = i; j < V; j++)
-					fakeList.add(friendId);
-							
-				JSONArray areFriends = (JSONArray)client.friends_areFriends(fakeList, friendIds.subList(i, V));
-				for(int j = 0; j < areFriends.length(); j++) {
-					JSONObject areFriend = areFriends.getJSONObject(j);
-					if(Boolean.parseBoolean(areFriend.getString("are_friends"))) {
-						long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");
-						E++;
-						write(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
+				try {
+					JSONObject u = results.getJSONObject(i);		
+					String name = u.getString(fields.get(ProfileField.NAME));
+					log(i + ". Processing friends of " + name);
+					
+					long friendId = friendIds.get(i);				
+					
+					ArrayList<Long> fakeList = new ArrayList<Long>();
+					for(int j = i; j < V; j++)
+						fakeList.add(friendId);
+								
+					JSONArray areFriends = (JSONArray)client.friends_areFriends(fakeList, friendIds.subList(i, V));
+					for(int j = 0; j < areFriends.length(); j++) {
+						try {
+							JSONObject areFriend = areFriends.getJSONObject(j);
+							if(Boolean.parseBoolean(areFriend.getString("are_friends"))) {
+								long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");
+								E++;
+								write(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
+							}
+						} catch(JSONException je) {
+							logError(je.getLocalizedMessage());
+						}
 					}
+				} catch(JSONException je) {
+					logError(je.getLocalizedMessage());
 				}
 			}
 			
