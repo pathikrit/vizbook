@@ -56,9 +56,9 @@ public class CommunityLayout extends AbstractAction {
             AggregateItem aitem = null;
             
             int idx = 0;
-            Set set = comm.getCommunityMembers(i);
+            Set<?> set = comm.getCommunityMembers(i);
             Node node = null;
-            Iterator iter = set.iterator();
+            Iterator<?> iter = set.iterator();
             while ( iter.hasNext() ) {
                 node = (Node)iter.next();
                 NodeItem item = registry.getNodeItem(node);

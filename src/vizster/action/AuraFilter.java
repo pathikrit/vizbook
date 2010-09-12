@@ -31,9 +31,9 @@ public class AuraFilter extends Filter {
         FocusSet set = fman.getFocusSet(Vizster.SEARCH_KEY);
         
         synchronized ( set ) {
-	        Iterator iter = set.iterator();
+	        Iterator<?> iter = set.iterator();
 	        while ( iter.hasNext() ) {
-	            Node n = (Node)iter.next();
+	            Node n = (Node) iter.next();
 	            NodeItem nitem = registry.getNodeItem(n);
 	            if ( nitem != null ) {
 	                VisualItem item = registry.getItem(Vizster.AURA_CLASS, n, true, true);

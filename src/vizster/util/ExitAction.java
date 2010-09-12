@@ -10,6 +10,7 @@ import javax.swing.AbstractAction;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class ExitAction extends AbstractAction {
 
     public void actionPerformed(ActionEvent e) {

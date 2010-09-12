@@ -93,6 +93,7 @@ import edu.berkeley.guir.prefusex.layout.FruchtermanReingoldLayout;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class Vizster extends JFrame {
 
     // default starting friendster user id
@@ -507,9 +508,9 @@ public class Vizster extends JFrame {
         forces = new ActionList(registry,-1,20);
         forces.add(new AbstractAction() {
             public void run(ItemRegistry registry, double frac) {                
-                Iterator iter = registry.getDefaultFocusSet().iterator();
+                Iterator<?> iter = registry.getDefaultFocusSet().iterator();
                 while ( iter.hasNext() ) {
-                    Entity e = (Entity)iter.next();
+                    Entity e = (Entity) iter.next();
                     if (e instanceof Node) {
                         NodeItem item = registry.getNodeItem((Node)e);
                         if ( item != null ) item.setFixed(true);

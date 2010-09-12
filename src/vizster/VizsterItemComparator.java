@@ -13,7 +13,7 @@ import edu.berkeley.guir.prefuse.NodeItem;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> prefuse(AT)jheer.org
  */
-public class VizsterItemComparator implements Comparator {
+public class VizsterItemComparator implements Comparator<Object> {
 
     private static int MOUSE_SCORE        = (1<<10);
     private static int HIGHLIGHT1_SCORE   = (1<<9);
@@ -21,7 +21,7 @@ public class VizsterItemComparator implements Comparator {
     private static int HIGHLIGHT3_SCORE   = (1<<7);
     private static int FOCUS_SCORE        = (1<<6);
     private static int NODE_SCORE         = (1<<5);
-    private static int AURA_SCORE         = (1<<4);
+    // private static int AURA_SCORE         = (1<<4);
     private static int AGGREGATE_SCORE    = (1<<3);
     private static int FADED_SCORE        = (1<<2);
     private static int EDGE_SCORE         = (1<<1);

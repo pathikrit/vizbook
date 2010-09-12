@@ -28,7 +28,7 @@ public class VizsterSizeFunction extends SizeFunction {
         scale = 1.0;
         
         // set actual size to avoid list overlap
-        Iterator iter = registry.getItems();
+        Iterator<?> iter = registry.getItems();
         while ( iter.hasNext() ) {
             VisualItem item = (VisualItem)iter.next();
             item.setSize(1.0);

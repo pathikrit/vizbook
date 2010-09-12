@@ -22,7 +22,7 @@ public class InvertToggleAction extends AbstractAction {
         Boolean val = (int)(frac*scalar)%2 == 0 ? Boolean.TRUE : Boolean.FALSE;
         
         // set the values
-        Iterator iter = registry.getNodeItems();
+        Iterator<?> iter = registry.getNodeItems();
         while ( iter.hasNext() ) {
             VisualItem item = (VisualItem)iter.next();
             item.setVizAttribute("invert",val);

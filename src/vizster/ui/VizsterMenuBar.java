@@ -8,7 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import vizster.Vizster;
-import vizster.util.ColorMapAction;
+//import vizster.util.ColorMapAction;
 import vizster.util.DebugInfoAction;
 import vizster.util.ExitAction;
 import vizster.util.FitToViewAction;
@@ -30,6 +30,7 @@ import edu.berkeley.guir.prefuse.util.display.ExportDisplayAction;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class VizsterMenuBar extends JMenuBar {
 
     public static final String DBUG = "Toggle Debug Display";
@@ -143,7 +144,7 @@ public class VizsterMenuBar extends JMenuBar {
         passI.addActionListener(new TogglePassHighlightThroughFocus(vizster));
         laytI.addActionListener(new StaticLayoutAction(vizster));
         
-        ColorMapAction cmapA = new ColorMapAction(vizster);
+//        ColorMapAction cmapA = new ColorMapAction(vizster);
 //        gmapI.addActionListener(cmapA);
 //        hmapI.addActionListener(cmapA);
 //        cmapI.addActionListener(cmapA);

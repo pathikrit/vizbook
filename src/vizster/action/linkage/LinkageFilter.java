@@ -31,10 +31,9 @@ public class LinkageFilter extends Filter {
     private static final String[] types = new String[] {
         ItemRegistry.DEFAULT_NODE_CLASS, ItemRegistry.DEFAULT_EDGE_CLASS};
     
-    private HashMap counts = new HashMap();
-    private HashSet keepers = new HashSet();
-    private ArrayList newlyFiltered = new ArrayList();
-    private Point2D tmpP = new Point2D.Double();
+    private HashMap<Node, int[]> counts = new HashMap<Node, int[]>();
+    private HashSet<Node> keepers = new HashSet<Node>();
+    private ArrayList<Node> newlyFiltered = new ArrayList<Node>();    
     private boolean includeOthers = true;
     
     public LinkageFilter() {
@@ -53,7 +52,7 @@ public class LinkageFilter extends Filter {
         
         Node clickNode = null;
         Graph fg = registry.getFilteredGraph();
-        Iterator iter;
+        Iterator<?> iter;
         
         // for each focus, tally visitation counts for neighbors
         iter = focusSet.iterator();
@@ -62,7 +61,7 @@ public class LinkageFilter extends Filter {
             if ( clickNode == null )
                 clickNode = n;
             keepers.add(n);
-            Iterator niter = n.getNeighbors();
+            Iterator<?> niter = n.getNeighbors();
             while ( niter.hasNext() ) {
                 Node nn = (Node)niter.next();
                 int[] count = (int[])counts.get(nn);
@@ -113,7 +112,7 @@ public class LinkageFilter extends Filter {
                 registry.touch(aitem.getItemClass());
             }
 
-            Iterator eiter = n.getEdges();
+            Iterator<?> eiter = n.getEdges();
             while ( eiter.hasNext() ) {
                 Edge e = (Edge)eiter.next();
                 Node nn = e.getAdjacentNode(n);

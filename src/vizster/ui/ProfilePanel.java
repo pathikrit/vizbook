@@ -47,6 +47,7 @@ import edu.berkeley.guir.prefuse.graph.Entity;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class ProfilePanel extends JPanel {
 
     private JLabel[]        labels;

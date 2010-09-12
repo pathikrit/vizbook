@@ -36,7 +36,7 @@ public class CommunityEdgeLabeler extends AbstractAction {
         	return;
         
         // iterate over edges, mark those that are between communities
-        Iterator iter = registry.getEdgeItems();
+        Iterator<?> iter = registry.getEdgeItems();
         while ( iter.hasNext() ) {
             EdgeItem ei = (EdgeItem)iter.next();
             NodeItem n1 = (NodeItem)ei.getFirstNode();

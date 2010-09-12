@@ -24,9 +24,9 @@ import edu.berkeley.guir.prefuse.graph.Node;
  */
 public class HighlightAction extends AbstractAction {
 
-    private ArrayList  queue = new ArrayList();
-    private ArrayList queue2 = new ArrayList();
-    private HashSet  visited = new HashSet();
+    private ArrayList<Node>  queue = new ArrayList<Node>();
+    private ArrayList<Node> queue2 = new ArrayList<Node>();
+    private HashSet<Node>  visited = new HashSet<Node>();
     
     private int hops = 2;
     private boolean showEdges;
@@ -70,7 +70,7 @@ public class HighlightAction extends AbstractAction {
         
         boolean restore = (n==null && search.size()==0);
         int defaultValue = (restore || search.size()==0 ? 0 : -1);
-        Iterator iter = registry.getNodeItems();
+        Iterator<?> iter = registry.getNodeItems();
         while ( iter.hasNext() ) {
             VisualItem item = (VisualItem)iter.next();
             item.setHighlighted(false);
@@ -165,7 +165,7 @@ public class HighlightAction extends AbstractAction {
                 }
             }
             // swap queues
-            ArrayList tmp = queue;
+            ArrayList<Node> tmp = queue;
             queue = queue2;
             queue2 = tmp;
         }

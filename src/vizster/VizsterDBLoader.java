@@ -72,7 +72,7 @@ public class VizsterDBLoader {
     
     protected String m_keyField = "uid";
     protected int m_maxSize = 50000;
-    protected LinkedHashMap m_cache = new LinkedHashMap(m_maxSize,.75f,true) {
+    protected LinkedHashMap<Object, Object> m_cache = new LinkedHashMap<Object, Object>(m_maxSize,.75f,true) {
         public boolean removeEldestEntry(Map.Entry eldest) {
             return evict((Entity)eldest.getValue());
         }
@@ -87,9 +87,10 @@ public class VizsterDBLoader {
     protected String m_neighborQuery;
     protected String m_edgeQuery;
     
-    private Vector m_liveQueries;
+    private Vector<Thread> m_liveQueries;
     
     private Connection m_db;
+    //TODO: Do we need these? Remove warnings from this file. Maybe even delete DB usage from vizster
     private PreparedStatement m_ns, m_es;
     
     /**
@@ -111,7 +112,7 @@ public class VizsterDBLoader {
         m_registry = registry;
         m_graph = registry.getGraph();
         m_columns = columns;
-        m_liveQueries = new Vector();
+        m_liveQueries = new Vector<Thread>();
         try {
             setNeighborQuery(nQuery);
             setEdgeQuery(eQuery);
@@ -167,8 +168,8 @@ public class VizsterDBLoader {
                     return;
                 }
                 
-		        ArrayList queue = new ArrayList();
-		        ArrayList queue2 = new ArrayList();
+		        ArrayList<Node> queue = new ArrayList<Node>();
+		        ArrayList<Node> queue2 = new ArrayList<Node>();
 		        queue.add(n);
 		        for ( int i=0; i<hops; i++ ) {
 		            while ( !queue.isEmpty() ) {
@@ -180,13 +181,13 @@ public class VizsterDBLoader {
 		                loadEdges(es, qn);
 		                // load neighbors for next round of querying
 		                if ( i < hops-1 ) {
-		                    Iterator iter = qn.getNeighbors();
+		                    Iterator<?> iter = qn.getNeighbors();
 		                    while ( iter.hasNext() ) {
-		                        queue2.add(iter.next());
+		                        queue2.add((Node) iter.next());
 		                    }
 		                }
 		            }
-		            ArrayList tmp = queue;
+		            ArrayList<Node> tmp = queue;
 		            queue = queue2;
 		            queue2 = tmp;
 		        }

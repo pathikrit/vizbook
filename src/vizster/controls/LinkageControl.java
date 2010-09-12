@@ -23,7 +23,7 @@ import edu.berkeley.guir.prefuse.graph.Node;
 public class LinkageControl extends ControlAdapter {
 
     private Vizster vizster;
-    private ArrayList fixedList = new ArrayList();
+    private ArrayList<Node> fixedList = new ArrayList<Node>();
     private boolean isEnabled = false;
     private boolean persist = false;
     private long down;
@@ -137,7 +137,7 @@ public class LinkageControl extends ControlAdapter {
         synchronized ( registry ) {
             FocusManager fman = registry.getFocusManager();
 	        FocusSet click = fman.getFocusSet(Vizster.CLICK_KEY);
-            Iterator nodeIter;
+            Iterator<?> nodeIter;
             if ( state ) {
 		        if (click.size() < 2)
 		            return false;
@@ -149,7 +149,7 @@ public class LinkageControl extends ControlAdapter {
                 nodeIter = fixedList.iterator();
             }
             while ( nodeIter.hasNext() ) {
-			    Node n = (Node)nodeIter.next();
+			    Node n = (Node) nodeIter.next();
 			    NodeItem nitem = registry.getNodeItem(n);
 			    nitem.setFixed(state);
 			    nitem.setWasFixed(state);
@@ -163,7 +163,7 @@ public class LinkageControl extends ControlAdapter {
 	            FocusSet mouse = fman.getFocusSet(Vizster.MOUSE_KEY);
 	            nodeIter = mouse.iterator();
 	            while ( nodeIter.hasNext() ) {
-	                Node n = (Node)nodeIter.next();
+	                Node n = (Node) nodeIter.next();
 				    NodeItem nitem = registry.getNodeItem(n);
 				    nitem.setFixed(false);
 				    nitem.setWasFixed(false);

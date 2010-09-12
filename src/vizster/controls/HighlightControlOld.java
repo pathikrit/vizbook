@@ -60,7 +60,7 @@ public class HighlightControlOld extends ControlAdapter {
     public void clearHighlight(VisualItem src) {
         ItemRegistry registry = src.getItemRegistry();
         int defaultValue = 0;
-        Iterator iter = registry.getNodeItems();
+        Iterator<?> iter = registry.getNodeItems();
         while ( iter.hasNext() ) {
             VisualItem item = (VisualItem)iter.next();
             item.setHighlighted(false);
@@ -80,7 +80,7 @@ public class HighlightControlOld extends ControlAdapter {
         ItemRegistry registry = n.getItemRegistry();
         
         int defaultValue = state?-1:0;
-        Iterator iter = registry.getNodeItems();
+        Iterator<?> iter = registry.getNodeItems();
         while ( iter.hasNext() ) {
             VizsterLib.setHighlightValue((VisualItem)iter.next(),defaultValue);
         }
@@ -95,9 +95,9 @@ public class HighlightControlOld extends ControlAdapter {
             VizsterLib.setHighlightValue(n,0);
             n.setHighlighted(true);
             
-            ArrayList queue  = new ArrayList();
-            ArrayList queue2 = new ArrayList();
-            HashSet visited = new HashSet();
+            ArrayList<Node> queue  = new ArrayList<Node>();
+            ArrayList<Node> queue2 = new ArrayList<Node>();
+            HashSet<Node> visited = new HashSet<Node>();
             queue.add(nn);
             visited.add(nn);
             
@@ -139,7 +139,7 @@ public class HighlightControlOld extends ControlAdapter {
 	                }
 	            }
 	            // swap queues
-	            ArrayList tmp = queue;
+	            ArrayList<Node> tmp = queue;
 	            queue = queue2;
 	            queue2 = tmp;
             }

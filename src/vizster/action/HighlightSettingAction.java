@@ -26,7 +26,7 @@ public class HighlightSettingAction extends AbstractAction {
      * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
-        Iterator iter;
+        Iterator<?> iter;
         
         iter = registry.getNodeItems();
         while ( iter.hasNext() ) {

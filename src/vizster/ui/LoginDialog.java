@@ -30,20 +30,19 @@ import vizster.util.DBConnectAction;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class LoginDialog extends JDialog {
 
     private static final int LABELW = 75;
-    private static final int FIELDW = 200;
+    private static final int FIELDW = 200;    
     
-    private Vizster vizster;
     private JLabel failL;
     
     private JTextField curFields[];
     private boolean login = false;
     
     public LoginDialog(Vizster owner) {
-        super(owner, "Vizster Login", true);
-        vizster = owner;
+        super(owner, "Vizster Login", true);    
         curFields = null;
         initUI();
         
@@ -208,7 +207,7 @@ public class LoginDialog extends JDialog {
         prop.setProperty("dbhost",   props[2]);
         prop.setProperty("dbname",   props[3]);
         try {
-            prop.save(new FileOutputStream("login.properties"),
+            prop.store(new FileOutputStream("login.properties"),
                 "Login Properties");
         } catch ( Exception e ) {}
     } //

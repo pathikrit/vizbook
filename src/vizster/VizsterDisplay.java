@@ -19,6 +19,7 @@ import edu.berkeley.guir.prefuse.util.FontLib;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class VizsterDisplay extends Display {
     
     private Vizster vizster;

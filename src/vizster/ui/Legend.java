@@ -16,6 +16,7 @@ import edu.berkeley.guir.prefuse.util.ColorMap;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org</a>
  */
+@SuppressWarnings("serial")
 public class Legend extends JPanel {
 
     private String[] labels;

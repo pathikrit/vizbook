@@ -12,6 +12,7 @@ import vizster.Vizster;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> prefuse(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class FitToViewAction extends AbstractAction {
 
     private Vizster vizster;

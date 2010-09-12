@@ -15,6 +15,7 @@ import vizster.ui.VizsterMenuBar;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org</a>
  */
+@SuppressWarnings("serial")
 public class LoadNetworkAction extends AbstractAction {
 
     private Vizster vizster;

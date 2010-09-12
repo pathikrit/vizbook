@@ -24,8 +24,8 @@ public class ReleaseFixedAction extends Layout {
     public void run(ItemRegistry registry, double frac) {
         FocusManager fman = registry.getFocusManager();
         FocusSet click = fman.getFocusSet(Vizster.CLICK_KEY);
-        FocusSet mouse = fman.getFocusSet(Vizster.MOUSE_KEY);
-		Iterator nodeIter = click.iterator();
+        //FocusSet mouse = fman.getFocusSet(Vizster.MOUSE_KEY);
+		Iterator<?> nodeIter = click.iterator();
 		while ( nodeIter.hasNext() ) {
 		    Node n = (Node)nodeIter.next();
 		    NodeItem nitem = registry.getNodeItem(n);

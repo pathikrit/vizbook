@@ -21,7 +21,7 @@ import edu.berkeley.guir.prefuse.graph.Node;
 public class CommunityFilter extends Filter {
     
     private Object m_key;
-    private ArrayList m_aggs = new ArrayList(50);
+    private ArrayList<AggregateItem> m_aggs = new ArrayList<AggregateItem>(50);
     
     public CommunityFilter(Object communityKey) {
         super(ItemRegistry.DEFAULT_AGGR_CLASS, true);
@@ -36,7 +36,7 @@ public class CommunityFilter extends Filter {
         
         // filter the aggregates to use
         for ( int i=0; i<num; i++ ) {
-        	Set set = comm.getCommunityMembers(i);
+        	Set<?> set = comm.getCommunityMembers(i);
         	m_aggs.add(getAggregate(registry, set));
         }
         
@@ -45,10 +45,10 @@ public class CommunityFilter extends Filter {
         
         // fill out the aggregate mappings
         for ( int i=0; i<num; i++ ) {
-            Set set = comm.getCommunityMembers(i);
+            Set<?> set = comm.getCommunityMembers(i);
             AggregateItem aitem = (AggregateItem)m_aggs.get(i);
             
-            Iterator iter = set.iterator();
+            Iterator<?> iter = set.iterator();
             while ( iter.hasNext() ) {
                 Node node = (Node)iter.next();
                 registry.addMapping(node,aitem);
@@ -59,12 +59,12 @@ public class CommunityFilter extends Filter {
         m_aggs.clear();
     } //
     
-    protected AggregateItem getAggregate(ItemRegistry registry, Set set) {
+    protected AggregateItem getAggregate(ItemRegistry registry, Set<?> set) {
     	AggregateItem aitem = null;
     	boolean highlight = true;
     	
     	Node n = null;
-    	Iterator iter = set.iterator();
+    	Iterator<?> iter = set.iterator();
     	while ( iter.hasNext() ) {
     		n = (Node)iter.next();
     		aitem = registry.getAggregateItem(n);

@@ -37,6 +37,7 @@ import vizster.Vizster;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> prefuse(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class ProfileLookupDialog extends JDialog {
 
     private String[] FIELDS = 
@@ -73,7 +74,7 @@ public class ProfileLookupDialog extends JDialog {
         
         // open the reader and searcher
         try {
-	        reader = IndexReader.open(dir);
+	        reader = IndexReader.open(directory);
 	        searcher = new IndexSearcher(reader);
 	    } catch ( Exception e ) {
 	        e.printStackTrace();
@@ -167,7 +168,7 @@ public class ProfileLookupDialog extends JDialog {
         }
     } //
     
-    private String rewrite(String query) {
+    /*private String rewrite(String query) {
         String[] toks = query.split(" ");
         StringBuffer sbuf = new StringBuffer();
         for ( int i=0; i<toks.length; i++ ) {
@@ -176,7 +177,7 @@ public class ProfileLookupDialog extends JDialog {
             sbuf.append(toks[i]);
         }
         return sbuf.toString();
-    } //
+    } */
     
     public class LookupTableModel extends AbstractTableModel {
         private Hits hits;
@@ -199,7 +200,7 @@ public class ProfileLookupDialog extends JDialog {
             return FIELDS.length;
         } //
         
-        public Class getColumnClass(int i) {
+        public Class<?> getColumnClass(int i) {
             return Object.class;
         } //
         

@@ -13,6 +13,7 @@ import edu.berkeley.guir.prefuse.Display;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class DebugInfoAction extends AbstractAction {
 
     private Vizster vizster;

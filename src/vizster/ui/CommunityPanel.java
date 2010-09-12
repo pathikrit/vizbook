@@ -26,6 +26,7 @@ import edu.berkeley.guir.prefuse.focus.FocusSet;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> prefuse(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class CommunityPanel extends JPanel
 	implements ChangeListener, ActionListener
 {

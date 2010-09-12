@@ -34,7 +34,7 @@ public class VizsterCircleLayout extends Layout {
 
 		double radius = 0.45 * (height < width ? height : width);
 
-		Iterator nodeIter = fset.iterator();
+		Iterator<?> nodeIter = fset.iterator();
 		for (int i=0; nodeIter.hasNext(); i++) {
 		    NodeItem n = registry.getNodeItem((Node)nodeIter.next());
 		    if ( !n.isFixed() )

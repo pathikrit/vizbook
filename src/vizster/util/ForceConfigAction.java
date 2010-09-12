@@ -17,13 +17,13 @@ import vizster.Vizster;
  * @version 1.0
  * @author <a href="http://jheer.org">Jeffrey Heer</a> vizster(AT)jheer.org
  */
+@SuppressWarnings("serial")
 public class ForceConfigAction extends AbstractAction {
 
-    private Vizster vizster;
     private JDialog dialog;
     
+    // TODO: remove usage of vizster from the constructor
     public ForceConfigAction(Vizster vizster) {
-        this.vizster = vizster;
         dialog = new JDialog(vizster, false);
         dialog.setTitle("Configure Force Simulator");
         JPanel forcePanel = new ForcePanel(vizster.getForceSimulator());
