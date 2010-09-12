@@ -25,7 +25,7 @@ function sendRequest(method, uri, callback) {
 			if(xmlHttp.status == 200) { 
 				callback(xmlHttp.responseText);
 			} else { 
-				alert("Error during AJAX call. Please try again.");
+				// alert("Error during AJAX call. Please try again.");
 			}
 		}
 	};

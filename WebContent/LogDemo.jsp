@@ -6,7 +6,7 @@
 		<div id="log1" class="logs"></div>		
 	</body>
 	
-	<script language="javascript" SRC="ajax.js"></script>				
+	<script language="javascript" src="ajax.js"></script>				
 	<script type="text/javascript">		 			
 		function fetchLogs() {
 			//TODO: if responseText is "done", stop refreshing

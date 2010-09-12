@@ -47,10 +47,9 @@ public class FacebookServlet extends HttpServlet {
     	   return;
        }
        
-       dataImportTask = new VizsterXMLWriter(client, "vizster", "xml");	
-       dataImportTask.run();
-       
+       dataImportTask = new VizsterXMLWriter(client, "vizster", "xml");
        request.getRequestDispatcher("FacebookDataViewer.jsp").forward(request, response);
+       dataImportTask.start();
 	}
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

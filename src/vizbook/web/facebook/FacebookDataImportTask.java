@@ -38,6 +38,7 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	 */
 	protected abstract void fetchData();
 	
+	@Override
 	public void run() {
 		fetchData();
 		cleanUp();
