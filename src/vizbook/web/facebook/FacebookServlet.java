@@ -54,6 +54,7 @@ public class FacebookServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	if(dataImportTask != null)
-    		response.getWriter().write(dataImportTask.getLog());		
+    		response.getWriter().write(dataImportTask.getLog());
+    	//TODO: If done send to a page containing the applet
 	}
 }

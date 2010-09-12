@@ -22,6 +22,7 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	protected FacebookDataImportTask(FacebookJsonRestClient client, String name, String extension) {
 		this.client = client;
 		try {
+			// TODO: Make it write to a project level directory
 			fileName = String.format("C:\\Users\\Wrick\\Documents\\%s-%d.%s", name, client.users_getLoggedInUser(), extension);			
 			output = new PrintWriter(new File(fileName));
 		} catch(Exception e) {

@@ -9,7 +9,7 @@
 	<script language="javascript" src="ajax.js"></script>				
 	<script type="text/javascript">		 			
 		function fetchLogs() {
-			//TODO: if responseText is "done", stop refreshing
+			//TODO: better CSS3 styles log viewer
 			sendRequest("POST", "LogDemo",
 				function(responseText) {	
                     var logDiv = document.getElementById("log1");  			

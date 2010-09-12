@@ -16,7 +16,7 @@ import vizster.action.VizsterXRayColorFunction;
  */
 @SuppressWarnings("serial")
 public class ColorAction extends AbstractAction {
-
+	//TODO: Move these files to vizste.action package. Examine other package incosinsitencies
     private Vizster vizster;
     private JToggleButton prev;
     
