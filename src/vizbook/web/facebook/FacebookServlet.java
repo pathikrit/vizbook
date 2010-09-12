@@ -19,7 +19,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 				@WebInitParam(name = "API_KEY", value = "e19760c3ea4e06f07d417f30a59a81da", description = "API Key"), 
 				@WebInitParam(name = "SECRET_KEY", value = "f9865fdf21a2234964841aeaaa561a8d", description = "Application Secret")
 		})
-public class FacebookServlet extends HttpServlet {	
+public class FacebookServlet extends HttpServlet {
 	
 	private FacebookDataImportTask dataImportTask = null;
        
@@ -42,8 +42,10 @@ public class FacebookServlet extends HttpServlet {
         	   e.printStackTrace();
            }
            session.setAttribute("restSearchAppSession", sessionKey);         
-       } else {    	   
-    	   response.sendRedirect("http://www.facebook.com/login.php?api_key="+apiKey);
+       } else {
+    	   //TODO: make this URL a property of the data import task
+    	   response.sendRedirect("http://www.facebook.com/login.php?api_key="+apiKey + 
+    			   "&req_perms=friends_about_me,friends_activities,friends_birthday,friends_education_history,friends_hometown,friends_interests,friends_location,friends_relationships,friends_relationship_details,friends_status,friends_website");
     	   return;
        }
        
