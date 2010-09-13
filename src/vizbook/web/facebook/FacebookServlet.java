@@ -21,8 +21,8 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 		})
 public class FacebookServlet extends HttpServlet {
 	
-	private FacebookDataImportTask dataImportTask = null;
-       
+	private final static String TASK_NAME = "FacebookDataImportTask";
+	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
        
@@ -49,14 +49,25 @@ public class FacebookServlet extends HttpServlet {
     	   return;
        }
        
-       dataImportTask = new VizsterXMLWriter(client, "vizster", "xml");
+       if(session.getAttribute(TASK_NAME) == null) {
+    	   FacebookDataImportTask task = new VizsterXMLWriter(client, "vizster-", "xml");
+    	   session.setAttribute(TASK_NAME, task);
+    	   task.start();
+   		}
+       
        request.getRequestDispatcher("FacebookDataViewer.jsp").forward(request, response);
-       dataImportTask.start();
+       
 	}
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	if(dataImportTask != null)
-    		response.getWriter().write(dataImportTask.getLog());
+    	FacebookDataImportTask task = getTask(request);
+    	if(task != null)
+    		response.getWriter().write(task.getLog());
     	//TODO: If done send to a page containing the applet
 	}
+    
+    private FacebookDataImportTask getTask(HttpServletRequest request) {
+    	HttpSession session = request.getSession();    	
+    	return (FacebookDataImportTask) session.getAttribute(TASK_NAME);
+    }
 }
