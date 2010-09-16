@@ -26,23 +26,24 @@ public class LogDemoServlet extends HttpServlet {
         doPost(request, response);		
 	}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Writer writer = response.getWriter();
-    	WebLoggingTask task = getTask(request);
-    	if(task.isRunning())
-    		writer.write(task.getLog());
-    	else
-    		writer.write("Done!");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    	
+    	updateWebLog(request.getSession(), response.getWriter());    	
 	}    
     
     //TODO: move this to a base class
-    private WebLoggingTask getTask(HttpServletRequest request) {
-    	HttpSession session = request.getSession();
+    private void updateWebLog(HttpSession session, Writer writer) throws IOException {    	
+    	
     	if(session.getAttribute(TASK_NAME) == null) {
     		WebLoggingTask task = new RandomLogger();
     		session.setAttribute(TASK_NAME, task);
-    		task.start(); //TODO: start iff its !running or !done
+    		task.start();
     	}
-    	return (WebLoggingTask) session.getAttribute(TASK_NAME);
+    	
+    	WebLoggingTask task = (WebLoggingTask) session.getAttribute(TASK_NAME);
+    	
+    	if(!task.isDone())
+    		writer.write(task.getLog());
+    	else
+    		writer.write("Done!");    	
     }
 }

@@ -11,10 +11,10 @@ import vizbook.web.demo.LogDemoServlet;
  */
 public abstract class WebLoggingTask extends Thread {
 	private static enum Status {
-		Running, Done, Stopped, Error
+		NotStarted, Running, Done, Stopped, Error
 	}
 	
-	private Status status = Status.Running;
+	private Status status = Status.NotStarted;
 	
 	private ArrayDeque<String> messageQueue = new ArrayDeque<String>();	
 	
@@ -36,23 +36,14 @@ public abstract class WebLoggingTask extends Thread {
 	}
 	
 	public final void run() {
-		while(isRunning()) {
-			task();
-			done();
-		}
+		status = Status.Running;
+		task();
+		status = Status.Done;
 	}
 	
 	public abstract void task();
 	
-	public final void stopThread() {
-		status = Status.Stopped;
-	}
-	
-	public final boolean isRunning() {
-		return status == Status.Running;
-	}
-	
-	private final void done() {
-		status = Status.Done;
+	public boolean isDone() {
+		return status == Status.Done;
 	}	
 }
