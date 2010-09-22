@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 import prefusex.community.CommunitySet;
-import prefuse.AggregateItem;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.NodeItem;
-import prefuse.VisualItem;
-import prefuse.action.AbstractAction;
-import prefuse.graph.Node;
-import prefuse.util.GeometryLib;
+import edu.berkeley.guir.prefuse.AggregateItem;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.action.AbstractAction;
+import edu.berkeley.guir.prefuse.graph.Node;
+import edu.berkeley.guir.prefuse.util.GeometryLib;
 
 /**
  * CommunityLayout
@@ -32,7 +32,7 @@ public class CommunityLayout extends AbstractAction {
     } //
     
     /**
-     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
+     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
         FocusManager fman = registry.getFocusManager();

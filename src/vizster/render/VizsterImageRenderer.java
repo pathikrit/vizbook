@@ -5,13 +5,13 @@ import java.awt.Image;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.VisualItem;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Entity;
-import prefuse.render.ImageFactory;
-import prefuse.render.TextImageItemRenderer;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Entity;
+import edu.berkeley.guir.prefuse.render.ImageFactory;
+import edu.berkeley.guir.prefuse.render.TextImageItemRenderer;
 
 /**
  * Subclass of TextImageItemRenderer that allows control of image rendering.

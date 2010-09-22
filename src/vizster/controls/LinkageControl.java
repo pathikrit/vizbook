@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import vizster.Vizster;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.NodeItem;
-import prefuse.VisualItem;
-import prefuse.event.ControlAdapter;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Node;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.event.ControlAdapter;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Node;
 
 /**
  * LinkageControl

@@ -5,8 +5,8 @@ import java.util.TimerTask;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import prefuse.VisualItem;
-import prefuse.event.ControlAdapter;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.event.ControlAdapter;
 
 /**
  * MagnifyControl

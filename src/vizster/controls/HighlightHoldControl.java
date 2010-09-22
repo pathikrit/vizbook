@@ -5,13 +5,13 @@ import java.util.TimerTask;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.VisualItem;
-import prefuse.activity.Activity;
-import prefuse.event.ControlAdapter;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Entity;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.activity.Activity;
+import edu.berkeley.guir.prefuse.event.ControlAdapter;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Entity;
 
 /**
  * MagnifyControl

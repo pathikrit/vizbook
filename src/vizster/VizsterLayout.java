@@ -1,12 +1,12 @@
 package vizster;
 
-import prefuse.EdgeItem;
-import prefuse.NodeItem;
-import prefusex.force.DragForce;
-import prefusex.force.ForceSimulator;
-import prefusex.force.NBodyForce;
-import prefusex.force.SpringForce;
-import prefusex.layout.ForceDirectedLayout;
+import edu.berkeley.guir.prefuse.EdgeItem;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefusex.force.DragForce;
+import edu.berkeley.guir.prefusex.force.ForceSimulator;
+import edu.berkeley.guir.prefusex.force.NBodyForce;
+import edu.berkeley.guir.prefusex.force.SpringForce;
+import edu.berkeley.guir.prefusex.layout.ForceDirectedLayout;
 
 /**
  * VizsterLayout

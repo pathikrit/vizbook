@@ -6,8 +6,8 @@ import java.awt.geom.RoundRectangle2D;
 
 import vizster.Vizster;
 import vizster.ui.DecoratorItem;
-import prefuse.VisualItem;
-import prefuse.render.ShapeRenderer;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.render.ShapeRenderer;
 
 /**
  * AuraRenderer
@@ -29,7 +29,7 @@ public class AuraRenderer extends ShapeRenderer {
     } //
     
     /**
-     * @see prefuse.render.ShapeRenderer#getRawShape(prefuse.VisualItem)
+     * @see edu.berkeley.guir.prefuse.render.ShapeRenderer#getRawShape(edu.berkeley.guir.prefuse.VisualItem)
      */
     protected Shape getRawShape(VisualItem item) {
         if ( !(item.getItemClass().equals(Vizster.AURA_CLASS)) ) {

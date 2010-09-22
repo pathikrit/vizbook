@@ -1,7 +1,7 @@
 package vizster.action;
 
-import prefuse.ItemRegistry;
-import prefuse.action.AbstractAction;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.action.AbstractAction;
 
 /**
  * NullAction
@@ -12,7 +12,7 @@ import prefuse.action.AbstractAction;
 public class NullAction extends AbstractAction {
 
     /**
-     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
+     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
     }

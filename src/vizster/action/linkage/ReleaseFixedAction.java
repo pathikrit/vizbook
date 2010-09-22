@@ -3,12 +3,12 @@ package vizster.action.linkage;
 import java.util.Iterator;
 
 import vizster.Vizster;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.NodeItem;
-import prefuse.action.assignment.Layout;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Node;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.action.assignment.Layout;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Node;
 
 /**
  * ReleaseFixedAction
@@ -19,7 +19,7 @@ import prefuse.graph.Node;
 public class ReleaseFixedAction extends Layout {
 
     /**
-     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
+     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
         FocusManager fman = registry.getFocusManager();

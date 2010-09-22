@@ -3,13 +3,13 @@ package vizster.action;
 import java.util.Iterator;
 
 import vizster.Vizster;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.NodeItem;
-import prefuse.VisualItem;
-import prefuse.action.filter.Filter;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Node;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.action.filter.Filter;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Node;
 
 /**
  * AuraFilter
@@ -24,7 +24,7 @@ public class AuraFilter extends Filter {
     } //
     
     /**
-     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
+     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
         FocusManager fman = registry.getFocusManager();

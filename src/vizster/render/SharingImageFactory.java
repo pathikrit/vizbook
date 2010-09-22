@@ -6,7 +6,7 @@ import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 
-import prefuse.render.ImageFactory;
+import edu.berkeley.guir.prefuse.render.ImageFactory;
 
 /**
  * An image factory subclass, which upon loading an image

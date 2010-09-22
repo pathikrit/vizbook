@@ -8,17 +8,17 @@ import java.util.Iterator;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import prefuse.EdgeItem;
-import prefuse.FocusManager;
-import prefuse.ItemRegistry;
-import prefuse.NodeItem;
-import prefuse.VisualItem;
-import prefuse.action.filter.Filter;
-import prefuse.focus.FocusSet;
-import prefuse.graph.Edge;
-import prefuse.graph.Graph;
-import prefuse.graph.Node;
-import prefuse.util.display.DisplayLib;
+import edu.berkeley.guir.prefuse.EdgeItem;
+import edu.berkeley.guir.prefuse.FocusManager;
+import edu.berkeley.guir.prefuse.ItemRegistry;
+import edu.berkeley.guir.prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.action.filter.Filter;
+import edu.berkeley.guir.prefuse.focus.FocusSet;
+import edu.berkeley.guir.prefuse.graph.Edge;
+import edu.berkeley.guir.prefuse.graph.Graph;
+import edu.berkeley.guir.prefuse.graph.Node;
+import edu.berkeley.guir.prefuse.util.display.DisplayLib;
 
 /**
  * LinkageFilter

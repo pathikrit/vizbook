@@ -21,7 +21,7 @@ import vizster.action.StaticLayoutAction;
 import vizster.action.ToggleAnimationAction;
 import vizster.action.ToggleLinkHighlighting;
 import vizster.action.TogglePassHighlightThroughFocus;
-import prefuse.util.display.ExportDisplayAction;
+import edu.berkeley.guir.prefuse.util.display.ExportDisplayAction;
 
 /**
  * The menubar for the Vizster application

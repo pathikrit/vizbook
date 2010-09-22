@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import prefuse.render.Renderer;
-import prefuse.util.ColorMap;
+import edu.berkeley.guir.prefuse.render.Renderer;
+import edu.berkeley.guir.prefuse.util.ColorMap;
 
 /**
  * Legend

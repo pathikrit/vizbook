@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 import vizster.ui.DecoratorItem;
 
-import prefuse.AggregateItem;
-import prefuse.EdgeItem;
-import prefuse.VisualItem;
-import prefuse.NodeItem;
+import edu.berkeley.guir.prefuse.AggregateItem;
+import edu.berkeley.guir.prefuse.EdgeItem;
+import edu.berkeley.guir.prefuse.VisualItem;
+import edu.berkeley.guir.prefuse.NodeItem;
 
 /**
  * Comparator that sorts items based on type and focus status.
