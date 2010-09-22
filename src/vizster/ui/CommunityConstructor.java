@@ -1,9 +1,9 @@
 package vizster.ui;
 
 import prefusex.community.CommunitySet;
-import edu.berkeley.guir.prefuse.FocusManager;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.action.AbstractAction;
+import prefuse.FocusManager;
+import prefuse.ItemRegistry;
+import prefuse.action.AbstractAction;
 
 public class CommunityConstructor extends AbstractAction {
 

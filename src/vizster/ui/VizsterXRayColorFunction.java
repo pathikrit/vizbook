@@ -5,12 +5,12 @@ import java.awt.Paint;
 import java.sql.Date;
 
 import vizster.VizsterLib;
-import edu.berkeley.guir.prefuse.AggregateItem;
-import edu.berkeley.guir.prefuse.EdgeItem;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.assignment.ColorFunction;
-import edu.berkeley.guir.prefuse.util.ColorLib;
-import edu.berkeley.guir.prefuse.util.ColorMap;
+import prefuse.AggregateItem;
+import prefuse.EdgeItem;
+import prefuse.VisualItem;
+import prefuse.action.assignment.ColorFunction;
+import prefuse.util.ColorLib;
+import prefuse.util.ColorMap;
 
 /**
  * Color function used for Vizster's attribute comparison (X-Ray) mode.

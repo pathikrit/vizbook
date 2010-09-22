@@ -8,8 +8,8 @@ import javax.swing.JFileChooser;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.graph.io.XMLGraphWriter;
+import prefuse.ItemRegistry;
+import prefuse.graph.io.XMLGraphWriter;
 
 /**
  * 

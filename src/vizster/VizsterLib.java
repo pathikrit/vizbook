@@ -14,9 +14,9 @@ import javax.swing.UIManager;
 
 import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
 
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.graph.Graph;
-import edu.berkeley.guir.prefuse.graph.io.XMLGraphReader;
+import prefuse.VisualItem;
+import prefuse.graph.Graph;
+import prefuse.graph.io.XMLGraphReader;
 
 import vizster.ui.LoginDialog;
 

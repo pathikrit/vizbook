@@ -2,9 +2,9 @@ package vizster.action;
 
 import java.util.Iterator;
 
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.AbstractAction;
+import prefuse.ItemRegistry;
+import prefuse.VisualItem;
+import prefuse.action.AbstractAction;
 
 /**
  * BorderToggleAction

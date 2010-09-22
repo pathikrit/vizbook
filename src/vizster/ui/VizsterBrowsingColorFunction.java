@@ -6,16 +6,16 @@ import java.awt.Paint;
 import prefusex.community.CommunitySet;
 import vizster.Vizster;
 import vizster.VizsterLib;
-import edu.berkeley.guir.prefuse.AggregateItem;
-import edu.berkeley.guir.prefuse.EdgeItem;
-import edu.berkeley.guir.prefuse.FocusManager;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.assignment.ColorFunction;
-import edu.berkeley.guir.prefuse.focus.FocusSet;
-import edu.berkeley.guir.prefuse.graph.Node;
-import edu.berkeley.guir.prefuse.util.ColorLib;
-import edu.berkeley.guir.prefuse.util.ColorMap;
+import prefuse.AggregateItem;
+import prefuse.EdgeItem;
+import prefuse.FocusManager;
+import prefuse.ItemRegistry;
+import prefuse.VisualItem;
+import prefuse.action.assignment.ColorFunction;
+import prefuse.focus.FocusSet;
+import prefuse.graph.Node;
+import prefuse.util.ColorLib;
+import prefuse.util.ColorMap;
 
 /**
  * Color function used for Vizster's browsing mode
@@ -74,7 +74,7 @@ public class VizsterBrowsingColorFunction extends ColorFunction {
         new ColorMap(new Paint[] {border1,border2,border3},0,2);
     
     public void updateCommunityMap(CommunitySet community) {
-        if ( community == null || community.size() == 0 ) {
+        if ( community == null || community.getCommunityCount() == 0 ) {
             communityColor = null;
             fadedCommColor = null;
         } else {

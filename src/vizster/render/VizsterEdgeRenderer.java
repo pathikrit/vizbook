@@ -1,8 +1,8 @@
 package vizster.render;
 
 import vizster.VizsterLib;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.render.DefaultEdgeRenderer;
+import prefuse.VisualItem;
+import prefuse.render.DefaultEdgeRenderer;
 
 /**
  * Vizster edge renderer, toggles edge width based on highlighted status

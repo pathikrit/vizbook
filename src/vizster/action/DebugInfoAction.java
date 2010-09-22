@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import vizster.Vizster;
-import edu.berkeley.guir.prefuse.Display;
+import prefuse.Display;
 
 /**
  * Turns on the display of a debugging info string on the Vizster display.

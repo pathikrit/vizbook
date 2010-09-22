@@ -5,8 +5,8 @@ import java.util.TimerTask;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
-import edu.berkeley.guir.prefuse.Display;
-import edu.berkeley.guir.prefuse.event.ControlAdapter;
+import prefuse.Display;
+import prefuse.event.ControlAdapter;
 
 /**
  * ZoomStepControl

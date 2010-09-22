@@ -3,12 +3,12 @@ package vizster.ui;
 import java.util.Iterator;
 
 import prefusex.community.CommunitySet;
-import edu.berkeley.guir.prefuse.EdgeItem;
-import edu.berkeley.guir.prefuse.FocusManager;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.NodeItem;
-import edu.berkeley.guir.prefuse.action.AbstractAction;
-import edu.berkeley.guir.prefuse.graph.Node;
+import prefuse.EdgeItem;
+import prefuse.FocusManager;
+import prefuse.ItemRegistry;
+import prefuse.NodeItem;
+import prefuse.action.AbstractAction;
+import prefuse.graph.Node;
 
 /**
  * CommunityEdgeLabeler
@@ -25,7 +25,7 @@ public class CommunityEdgeLabeler extends AbstractAction {
     } //
     
     /**
-     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
+     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
         FocusManager fman = registry.getFocusManager();

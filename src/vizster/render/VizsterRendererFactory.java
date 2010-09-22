@@ -2,16 +2,16 @@ package vizster.render;
 
 import vizster.Vizster;
 import vizster.ui.DecoratorItem;
-import edu.berkeley.guir.prefuse.AggregateItem;
-import edu.berkeley.guir.prefuse.Display;
-import edu.berkeley.guir.prefuse.EdgeItem;
-import edu.berkeley.guir.prefuse.NodeItem;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.render.ImageFactory;
-import edu.berkeley.guir.prefuse.render.PolygonRenderer;
-import edu.berkeley.guir.prefuse.render.Renderer;
-import edu.berkeley.guir.prefuse.render.RendererFactory;
-import edu.berkeley.guir.prefuse.render.ShapeRenderer;
+import prefuse.AggregateItem;
+import prefuse.Display;
+import prefuse.EdgeItem;
+import prefuse.NodeItem;
+import prefuse.VisualItem;
+import prefuse.render.ImageFactory;
+import prefuse.render.PolygonRenderer;
+import prefuse.render.Renderer;
+import prefuse.render.RendererFactory;
+import prefuse.render.ShapeRenderer;
 
 /**
  * Provides renderers for the Vizster application. This factory supports
@@ -78,7 +78,7 @@ public class VizsterRendererFactory implements RendererFactory {
     } //
     
     /**
-     * @see edu.berkeley.guir.prefuse.render.RendererFactory#getRenderer(edu.berkeley.guir.prefuse.VisualItem)
+     * @see prefuse.render.RendererFactory#getRenderer(prefuse.VisualItem)
      */
     public Renderer getRenderer(VisualItem item) {
         if ( item instanceof DecoratorItem ) {

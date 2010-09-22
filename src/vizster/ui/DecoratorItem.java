@@ -1,8 +1,8 @@
 package vizster.ui;
 
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.graph.Entity;
+import prefuse.ItemRegistry;
+import prefuse.VisualItem;
+import prefuse.graph.Entity;
 
 /**
  * DecoratorItem

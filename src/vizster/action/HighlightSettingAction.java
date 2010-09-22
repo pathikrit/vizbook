@@ -4,9 +4,9 @@ import java.util.Iterator;
 
 import vizster.VizsterLib;
 
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.AbstractAction;
+import prefuse.ItemRegistry;
+import prefuse.VisualItem;
+import prefuse.action.AbstractAction;
 
 /**
  * ClearHighlightAction
@@ -23,7 +23,7 @@ public class HighlightSettingAction extends AbstractAction {
     } //
     
     /**
-     * @see edu.berkeley.guir.prefuse.action.Action#run(edu.berkeley.guir.prefuse.ItemRegistry, double)
+     * @see prefuse.action.Action#run(prefuse.ItemRegistry, double)
      */
     public void run(ItemRegistry registry, double frac) {
         Iterator<?> iter;

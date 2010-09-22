@@ -34,10 +34,10 @@ import prefusex.lucene.LuceneSearcher;
 import prefusex.lucene.TextSearchFocusSet;
 import vizster.Vizster;
 import vizster.action.ColorAction;
-import edu.berkeley.guir.prefuse.FocusManager;
-import edu.berkeley.guir.prefuse.event.FocusEvent;
-import edu.berkeley.guir.prefuse.event.FocusListener;
-import edu.berkeley.guir.prefuse.graph.Entity;
+import prefuse.FocusManager;
+import prefuse.event.FocusEvent;
+import prefuse.event.FocusListener;
+import prefuse.graph.Entity;
 
 /**
  * Displays profile contents and controls for visualizing individual

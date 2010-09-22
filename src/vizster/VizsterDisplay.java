@@ -8,9 +8,9 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
 import vizster.ui.Legend;
-import edu.berkeley.guir.prefuse.Display;
-import edu.berkeley.guir.prefuse.util.ColorLib;
-import edu.berkeley.guir.prefuse.util.FontLib;
+import prefuse.Display;
+import prefuse.util.ColorLib;
+import prefuse.util.FontLib;
 
 
 /**

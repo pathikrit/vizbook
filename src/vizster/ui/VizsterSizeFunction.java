@@ -2,10 +2,10 @@ package vizster.ui;
 
 import java.util.Iterator;
 
-import edu.berkeley.guir.prefuse.Display;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.assignment.SizeFunction;
+import prefuse.Display;
+import prefuse.ItemRegistry;
+import prefuse.VisualItem;
+import prefuse.action.assignment.SizeFunction;
 
 /**
  * VizsterSizeFunction

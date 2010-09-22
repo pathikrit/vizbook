@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-import edu.berkeley.guir.prefusex.force.ForcePanel;
+import prefusex.force.ForcePanel;
 
 import vizster.Vizster;
 

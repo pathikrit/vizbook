@@ -6,11 +6,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 import prefusex.community.CommunitySet;
-import edu.berkeley.guir.prefuse.AggregateItem;
-import edu.berkeley.guir.prefuse.FocusManager;
-import edu.berkeley.guir.prefuse.ItemRegistry;
-import edu.berkeley.guir.prefuse.action.filter.Filter;
-import edu.berkeley.guir.prefuse.graph.Node;
+import prefuse.AggregateItem;
+import prefuse.FocusManager;
+import prefuse.ItemRegistry;
+import prefuse.action.filter.Filter;
+import prefuse.graph.Node;
 
 /**
  * CommunityFilter

@@ -4,9 +4,9 @@ import java.awt.Font;
 
 import vizster.VizsterLib;
 
-import edu.berkeley.guir.prefuse.VisualItem;
-import edu.berkeley.guir.prefuse.action.assignment.FontFunction;
-import edu.berkeley.guir.prefuse.util.FontLib;
+import prefuse.VisualItem;
+import prefuse.action.assignment.FontFunction;
+import prefuse.util.FontLib;
 
 /**
  * VizsterFontFunction
