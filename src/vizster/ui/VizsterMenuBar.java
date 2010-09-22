@@ -13,7 +13,6 @@ import vizster.action.DebugInfoAction;
 import vizster.action.ExitAction;
 import vizster.action.FitToViewAction;
 import vizster.action.ForceConfigAction;
-import vizster.action.GotoAction;
 import vizster.action.LoadNetworkAction;
 import vizster.action.ProfileSearchAction;
 import vizster.action.SaveVisibleNetworkAction;
@@ -133,8 +132,7 @@ public class VizsterMenuBar extends JMenuBar {
         saveI.addActionListener(new SaveVisibleNetworkAction(vizster));
         exptI.addActionListener(new ExportDisplayAction(vizster.getDisplay()));
         exitI.addActionListener(new ExitAction());
-        srchI.addActionListener(new ProfileSearchAction(vizster));
-        gotoI.addActionListener(new GotoAction(vizster));
+        srchI.addActionListener(new ProfileSearchAction(vizster));        
         fsimI.addActionListener(new ForceConfigAction(vizster));
         
         viewI.addActionListener(new FitToViewAction(vizster));

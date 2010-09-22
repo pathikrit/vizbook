@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import vizster.Vizster;
-import vizster.action.DBConnectAction;
 
 /**
  * Login dialog for Vizster.
@@ -108,8 +107,7 @@ public class LoginDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 LoginDialog.this.setVisible(false);
             } //
-        };
-        loginB.addActionListener(new DBConnectAction(this));
+        };        
         cancelB.addActionListener(al);
         
         Box b = new Box(BoxLayout.X_AXIS);

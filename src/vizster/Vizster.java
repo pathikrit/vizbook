@@ -7,7 +7,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.TimerTask;
 
@@ -75,8 +74,6 @@ import edu.berkeley.guir.prefuse.graph.Entity;
 import edu.berkeley.guir.prefuse.graph.Graph;
 import edu.berkeley.guir.prefuse.graph.GraphLib;
 import edu.berkeley.guir.prefuse.graph.Node;
-import edu.berkeley.guir.prefuse.graph.event.GraphLoaderListener;
-import edu.berkeley.guir.prefuse.graph.external.GraphLoader;
 import edu.berkeley.guir.prefuse.util.display.DisplayLib;
 import edu.berkeley.guir.prefusex.controls.DragControl;
 import edu.berkeley.guir.prefusex.controls.FocusControl;
@@ -95,6 +92,16 @@ import edu.berkeley.guir.prefusex.layout.FruchtermanReingoldLayout;
  */
 @SuppressWarnings("serial")
 public class Vizster extends JFrame {
+	
+	/**
+     * A set of all the available friendster profile attributes
+     */
+    public static final String[] ALL_COLUMNS =
+        {"uid", "name", "nfriends", "age", "gender", "status", 
+         "interested_in", "preference", "location", "hometown",
+         "occupation", "interests", "music", "books", "tvshows",
+         "movies", "membersince", "lastlogin", "lastmod", "about",
+         "want_to_meet", "photourl"};
 
     // default starting friendster user id
     public static final String DEFAULT_START_UID = "186297";
@@ -117,9 +124,8 @@ public class Vizster extends JFrame {
     // prefuse architecture components
     private ItemRegistry registry;
     private ActionList redraw, forces, altForces, altAnimate, filter, magnify;
-    private ActionList aura, community, highlight, linkLayout, unfix, border;
-    private VizsterDBLoader loader;
-    private boolean useDatabase, xrayMode = false;
+    private ActionList aura, community, highlight, linkLayout, unfix, border;    
+    private boolean xrayMode = false;
     private VizsterRendererFactory renderers;
     private ActionMap actionMap;
     
@@ -146,6 +152,7 @@ public class Vizster extends JFrame {
         //String startUID = argv.length > 0 ? argv[0] : DEFAULT_START_UID;
         String startUID = DEFAULT_START_UID;
         String file = argv.length > 0 ? argv[0] : null;
+        //TODO: If file is null, load with sample file
         new Vizster(startUID, file);
     } //
     
@@ -171,10 +178,7 @@ public class Vizster extends JFrame {
      *   a connection dialog for a database will be provided 
      */
     public Vizster(String startUID, String datafile) {
-        super("Vizster");
-        
-        // determine input method
-        this.useDatabase = (datafile==null);
+        super("Vizster");       
         
         // create the registry
         registry = new ItemRegistry(new DefaultGraph());
@@ -196,20 +200,6 @@ public class Vizster extends JFrame {
         final TextSearchFocusSet searchSet = new TextSearchFocusSet();
         fmanager.putFocusSet(SEARCH_KEY, searchSet);
         
-        if ( useDatabase ) {
-	        // create a new loader to talk to the database if needed
-	        loader = new VizsterDBLoader(registry, VizsterDBLoader.ALL_COLUMNS);
-	        // register update listener with graph loader
-	        loader.addGraphLoaderListener(new GraphLoaderListener() {
-	            public void entityLoaded(GraphLoader loader, Entity e) {
-	                filter.runNow();
-	            } //
-	            public void entityUnloaded(GraphLoader loader, Entity e) {
-	                filter.runNow();
-	            } //
-	        });
-        }
-        
         // initialize user interface components
         // set up the primary display
         display = new VizsterDisplay(this);
@@ -217,7 +207,7 @@ public class Vizster extends JFrame {
         // create the panel which shows friendster profile data
         profilePanel = new ProfilePanel(this);
         // create the search panel
-        searchPanel = new TextSearchPanel(VizsterDBLoader.ALL_COLUMNS,
+        searchPanel = new TextSearchPanel(ALL_COLUMNS,
                 registry, searchSet, fmanager.getFocusSet(CLICK_KEY));
         // create the community explorer panel
         communityPanel = new CommunityPanel(this);
@@ -266,28 +256,13 @@ public class Vizster extends JFrame {
         // stop any running actions
         forces.cancel();
         
-        // alter settings as needed
-        useDatabase = (datafile==null);
-        
         // load graph
         try {
-	        Graph g = null;
-	        if ( useDatabase ) {
-	            g = new DefaultGraph();
-	        } else {
-	            g = VizsterLib.loadGraph(datafile);
-	        }
+	        Graph g = datafile == null ? new DefaultGraph() : VizsterLib.loadGraph(datafile);	        
 	        registry.setGraph(g);
         } catch ( Exception e ) {
             e.printStackTrace();
             VizsterLib.defaultError(this, "Couldn't load input graph.");
-            return;
-        }
-        
-        // attempt to login to database if necessary
-        if ( useDatabase && !(loader.isConnected() ||
-                VizsterLib.authenticate(this, loginRetries)) ) {
-            //System.exit(0); // user canceled login so exit
             return;
         }
         
@@ -306,29 +281,17 @@ public class Vizster extends JFrame {
     } //
     
     private Node getInitialNode(String uid) {
-        Node r = null;
-        if ( useDatabase ) {
-	        try {
-	            r = loader.getProfileNode(uid);
-	        } catch ( SQLException e ) {
-	            e.printStackTrace();
-	            VizsterLib.profileLoadError(this, uid);
-	            System.exit(1);
-	        }
-	        // add initial node to the graph
-	        registry.getGraph().addNode(r);
+        Node r = null;      
+        if ( uid == null ) {
+            r = GraphLib.getMostConnectedNodes(registry.getGraph())[0]; 
         } else {
-            if ( uid == null ) {
-                r = GraphLib.getMostConnectedNodes(registry.getGraph())[0]; 
+            Node[] matches = GraphLib.search(registry.getGraph(), ID_FIELD, uid);
+            if ( matches.length > 0 ) {
+                r = matches[0];
             } else {
-                Node[] matches = GraphLib.search(registry.getGraph(), ID_FIELD, uid);
-                if ( matches.length > 0 ) {
-                    r = matches[0];
-                } else {
-                    r = GraphLib.getMostConnectedNodes(registry.getGraph())[0];
-                }
+                r = GraphLib.getMostConnectedNodes(registry.getGraph())[0];
             }
-        }
+        }        
         return r;
     } //
     
@@ -567,11 +530,6 @@ public class Vizster extends JFrame {
                 filter.runNow(); // refilter
                 setAnimate(true);
                 
-                // load neighbors from database as necessary
-                if ( useDatabase && added != null) {
-                    loader.loadNetwork(added,2);
-                }
-                
                 if ( addedItem != null ) {
                     centerDisplay(addedItem.getLocation()); // center display on the new focus
                 }
@@ -621,11 +579,7 @@ public class Vizster extends JFrame {
     
     public Display getDisplay() {
         return display;
-    } //
-    
-    public VizsterDBLoader getLoader() {
-        return loader;
-    } //
+    } //    
     
     public ForceSimulator getForceSimulator() {
         return ((VizsterLayout)actionMap.get("dynamicForces")).getForceSimulator();
