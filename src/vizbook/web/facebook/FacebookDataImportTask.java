@@ -19,11 +19,14 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	private Writer output;
 	private String fileName;
 	
+	private final static String OUT_DIR = "C:\\Users\\Wrick\\Documents\\";
+	
 	protected FacebookDataImportTask(FacebookJsonRestClient client, String name, String extension) {
 		this.client = client;
+		// TODO: Examine output directory and ask to load data iff forced
 		try {
 			// TODO: Make it write to a project level directory
-			fileName = String.format("C:\\Users\\Wrick\\Documents\\%s-%d.%s", name, client.users_getLoggedInUser(), extension);			
+			fileName = String.format(OUT_DIR + "%s-%d-%d.%s", name, client.users_getLoggedInUser(), System.currentTimeMillis(), extension);			
 			output = new PrintWriter(new File(fileName));
 		} catch(Exception e) {
 			logError("Could not create output file: " + e.getMessage());
@@ -41,11 +44,10 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	
 	@Override
 	public void task() {
+		log("Starting data import... Please be patient and don't close this window.");
 		fetchData();
-		cleanUp();
-	}
-	
-	private void cleanUp() {
+		
+		// cleanup
 		if(output != null) {
 			try {
 				output.flush();
@@ -54,6 +56,6 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 			} catch (IOException e) {
 				logError("Could not close output file: " + e.getLocalizedMessage());
 			}
-		}		
+		}
 	}
 }

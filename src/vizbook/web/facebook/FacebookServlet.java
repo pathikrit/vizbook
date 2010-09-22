@@ -50,7 +50,7 @@ public class FacebookServlet extends HttpServlet {
        }
        
        if(session.getAttribute(TASK_NAME) == null) {
-    	   FacebookDataImportTask task = new VizsterXMLWriter(client, "vizster-", "xml");
+    	   FacebookDataImportTask task = new VizsterXMLWriter(client, "vizster", "xml");
     	   session.setAttribute(TASK_NAME, task);
     	   task.start();
    		}
