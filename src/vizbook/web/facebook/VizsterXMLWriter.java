@@ -8,8 +8,7 @@ import com.google.code.facebookapi.*;
 
 public class VizsterXMLWriter extends FacebookDataImportTask {
 	
-	// Fetch only upto DEBUG_LENGTH vertices, set to -1 otherwise
-	private int DEBUG_LENGTH = -1;
+	private int DEBUG_LENGTH = -1;	// Fetch only upto DEBUG_LENGTH vertices, set to -1 otherwise
 	
 	public VizsterXMLWriter(FacebookJsonRestClient client, String name, String extension) {
 		super(client, name, extension);		
@@ -76,11 +75,13 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 					node.append("\n\t</node>");
 					
 					write(node.toString());
-					log(i + ". Processed attributes of " + name);
+					log(i + ". Processed attributes of " + name);					
 				} catch(JSONException je) {
 					logError(je.getLocalizedMessage());
 				}
 			}
+			
+			//TODO: combine node and edge into single loop; write to tempBuffer
 			log("Finished writing node attributes of " + V + " friends (including self): ");
 			log("Starting edge analysis...");
 			

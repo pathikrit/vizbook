@@ -21,7 +21,7 @@ import com.google.code.facebookapi.FacebookJsonRestClient;
 		})
 public class FacebookServlet extends HttpServlet {
 	
-	private final static String TASK_NAME = "FacebookDataImportTask";
+	private final static String TASK_NAME = VizsterXMLWriter.class.getSimpleName();
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
@@ -50,20 +50,21 @@ public class FacebookServlet extends HttpServlet {
        }
        
        if(session.getAttribute(TASK_NAME) == null) {
-    	   FacebookDataImportTask task = new VizsterXMLWriter(client, "vizster", "xml");
+    	   //TODO: Make taskname, output filename a property of the task    	   
+    	   //TODO: Create FDIT with reflection or move Facebook auth stuff to a base servlet?
+    	   FacebookDataImportTask task = new VizsterXMLWriter(client, TASK_NAME, "xml");
     	   session.setAttribute(TASK_NAME, task);
     	   task.start();
    		}
        
-       request.getRequestDispatcher("FacebookDataViewer.jsp").forward(request, response);
-       
-	}
+       request.getRequestDispatcher("Facebook/FacebookDataViewer.jsp").forward(request, response);       
+	}    
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	FacebookDataImportTask task = getTask(request);
-    	if(task != null)
-    		response.getWriter().write(task.getLog());
-    	//TODO: If done send to a page containing the applet
+    	if(task != null) {    		
+    		response.getWriter().write(task.getLog());		
+    	}    	
 	}
     
     private FacebookDataImportTask getTask(HttpServletRequest request) {

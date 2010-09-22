@@ -52,6 +52,7 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 			try {
 				output.flush();
 				output.close();
+				//TODO: Write secret done message here
 				log("Output is ready at: " + fileName);
 			} catch (IOException e) {
 				logError("Could not close output file: " + e.getLocalizedMessage());
