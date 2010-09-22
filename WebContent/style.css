@@ -1,0 +1,9 @@
+div.console {
+	height: 500px;
+	width: 1000px;
+	overflow: auto;	
+	background-color: #000;	
+	color: #fff;
+	font-family: "Courier New", Courier, monospace;
+	font-size: medium;
+}
