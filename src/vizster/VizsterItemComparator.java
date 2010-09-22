@@ -2,6 +2,8 @@ package vizster;
 
 import java.util.Comparator;
 
+import vizster.ui.DecoratorItem;
+
 import edu.berkeley.guir.prefuse.AggregateItem;
 import edu.berkeley.guir.prefuse.EdgeItem;
 import edu.berkeley.guir.prefuse.VisualItem;

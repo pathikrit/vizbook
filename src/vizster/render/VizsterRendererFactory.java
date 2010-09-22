@@ -1,7 +1,7 @@
 package vizster.render;
 
-import vizster.DecoratorItem;
 import vizster.Vizster;
+import vizster.ui.DecoratorItem;
 import edu.berkeley.guir.prefuse.AggregateItem;
 import edu.berkeley.guir.prefuse.Display;
 import edu.berkeley.guir.prefuse.EdgeItem;

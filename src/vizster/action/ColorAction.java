@@ -1,4 +1,4 @@
-package vizster.util;
+package vizster.action;
 
 import java.awt.event.ActionEvent;
 
@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JToggleButton;
 
 import vizster.Vizster;
-import vizster.action.VizsterXRayColorFunction;
+import vizster.ui.VizsterXRayColorFunction;
 
 /**
  * Updates which attribute is visualized in the attribute comparison mode

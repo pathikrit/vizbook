@@ -4,8 +4,8 @@ import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-import vizster.DecoratorItem;
 import vizster.Vizster;
+import vizster.ui.DecoratorItem;
 import edu.berkeley.guir.prefuse.VisualItem;
 import edu.berkeley.guir.prefuse.render.ShapeRenderer;
 

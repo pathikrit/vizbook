@@ -1,4 +1,4 @@
-package vizster.action;
+package vizster.ui;
 
 import java.awt.Font;
 

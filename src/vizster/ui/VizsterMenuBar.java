@@ -9,19 +9,19 @@ import javax.swing.KeyStroke;
 
 import vizster.Vizster;
 //import vizster.util.ColorMapAction;
-import vizster.util.DebugInfoAction;
-import vizster.util.ExitAction;
-import vizster.util.FitToViewAction;
-import vizster.util.ForceConfigAction;
-import vizster.util.GotoAction;
-import vizster.util.LoadNetworkAction;
-import vizster.util.ProfileSearchAction;
-import vizster.util.SaveVisibleNetworkAction;
-import vizster.util.ShowImagesAction;
-import vizster.util.StaticLayoutAction;
-import vizster.util.ToggleAnimationAction;
-import vizster.util.ToggleLinkHighlighting;
-import vizster.util.TogglePassHighlightThroughFocus;
+import vizster.action.DebugInfoAction;
+import vizster.action.ExitAction;
+import vizster.action.FitToViewAction;
+import vizster.action.ForceConfigAction;
+import vizster.action.GotoAction;
+import vizster.action.LoadNetworkAction;
+import vizster.action.ProfileSearchAction;
+import vizster.action.SaveVisibleNetworkAction;
+import vizster.action.ShowImagesAction;
+import vizster.action.StaticLayoutAction;
+import vizster.action.ToggleAnimationAction;
+import vizster.action.ToggleLinkHighlighting;
+import vizster.action.TogglePassHighlightThroughFocus;
 import edu.berkeley.guir.prefuse.util.display.ExportDisplayAction;
 
 /**

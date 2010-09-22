@@ -1,10 +1,9 @@
-package vizster.action;
+package vizster.ui;
 
 import java.awt.Color;
 import java.awt.Paint;
 import java.sql.Date;
 
-import vizster.DecoratorItem;
 import vizster.VizsterLib;
 import edu.berkeley.guir.prefuse.AggregateItem;
 import edu.berkeley.guir.prefuse.EdgeItem;

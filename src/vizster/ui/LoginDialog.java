@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import vizster.Vizster;
-import vizster.util.DBConnectAction;
+import vizster.action.DBConnectAction;
 
 /**
  * Login dialog for Vizster.

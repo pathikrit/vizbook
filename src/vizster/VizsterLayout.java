@@ -1,4 +1,4 @@
-package vizster.action;
+package vizster;
 
 import edu.berkeley.guir.prefuse.EdgeItem;
 import edu.berkeley.guir.prefuse.NodeItem;

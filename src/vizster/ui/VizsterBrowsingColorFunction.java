@@ -1,10 +1,9 @@
-package vizster.action;
+package vizster.ui;
 
 import java.awt.Color;
 import java.awt.Paint;
 
 import prefusex.community.CommunitySet;
-import vizster.DecoratorItem;
 import vizster.Vizster;
 import vizster.VizsterLib;
 import edu.berkeley.guir.prefuse.AggregateItem;

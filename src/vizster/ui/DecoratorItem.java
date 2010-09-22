@@ -1,4 +1,4 @@
-package vizster;
+package vizster.ui;
 
 import edu.berkeley.guir.prefuse.ItemRegistry;
 import edu.berkeley.guir.prefuse.VisualItem;

@@ -14,7 +14,6 @@ import javax.swing.event.ChangeListener;
 
 import prefusex.community.CommunitySet;
 import vizster.Vizster;
-import vizster.action.CommunityConstructor;
 import edu.berkeley.guir.prefuse.event.FocusEvent;
 import edu.berkeley.guir.prefuse.event.FocusListener;
 import edu.berkeley.guir.prefuse.focus.FocusSet;

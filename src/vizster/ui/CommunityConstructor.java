@@ -1,4 +1,4 @@
-package vizster.action;
+package vizster.ui;
 
 import prefusex.community.CommunitySet;
 import edu.berkeley.guir.prefuse.FocusManager;

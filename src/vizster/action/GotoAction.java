@@ -1,4 +1,4 @@
-package vizster.util;
+package vizster.action;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
