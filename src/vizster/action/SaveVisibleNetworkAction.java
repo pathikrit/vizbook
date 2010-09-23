@@ -1,10 +1,10 @@
 package vizster.action;
 
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.AbstractAction;
-import javax.swing.JFileChooser;
 
 import vizster.Vizster;
 import vizster.VizsterLib;
@@ -20,11 +20,11 @@ import edu.berkeley.guir.prefuse.graph.io.XMLGraphWriter;
 public class SaveVisibleNetworkAction extends AbstractAction {
 
     private Vizster vizster;
-    private JFileChooser chooser;
+    private FileDialog chooser;
     
     public SaveVisibleNetworkAction(Vizster vizster) {
         this.vizster = vizster;
-        chooser = new JFileChooser();
+        chooser = new FileDialog(vizster, "Save your data...");
     } //
 
     /**
@@ -33,12 +33,9 @@ public class SaveVisibleNetworkAction extends AbstractAction {
     public void actionPerformed(ActionEvent arg0) {
         // choose file to save to
         File f = null;
-        int rval = chooser.showOpenDialog(vizster);
-        if( rval == JFileChooser.APPROVE_OPTION ) {
-           f = chooser.getSelectedFile();
-        } else {
-            return;
-        }
+        chooser.setVisible(true);
+        
+        f = new File(chooser.getFile()); //TODO: Add directory
         
         // write out the current graph
         ItemRegistry registry = vizster.getItemRegistry();

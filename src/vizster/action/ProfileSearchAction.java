@@ -25,12 +25,8 @@ public class ProfileSearchAction implements ActionListener {
     
     public ProfileSearchAction(Vizster vizster) {
         this.vizster = vizster;
-        try {
-            lookup = new ProfileLookupDialog(vizster, 
-                    FSDirectory.getDirectory(dirpath,false));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        lookup = new ProfileLookupDialog(vizster, null); 
+		        //FSDirectory.getDirectory(dirpath,false));
     } //
     
     public void actionPerformed(ActionEvent ae) {
