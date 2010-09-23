@@ -18,7 +18,7 @@ public class VizsterApplet extends JApplet {
 	@Override
 	public void start() {		
 		super.start();		
-		vizster.show();
+		vizster.setVisible(true);
 	}
 
 	@Override
