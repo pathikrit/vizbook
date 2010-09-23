@@ -19,7 +19,7 @@ public abstract class FacebookDataImportTask extends WebLoggingTask {
 	private Writer output;
 	private String fileName;
 	
-	private final static String OUT_DIR = "C:\\Users\\Wrick\\Documents\\";
+	private final static String OUT_DIR = System.getProperty("user.home");
 	
 	protected FacebookDataImportTask(FacebookJsonRestClient client, String name, String extension) {
 		this.client = client;
