@@ -73,12 +73,13 @@ public class ProfileLookupDialog extends JDialog {
         analyzer = new StandardAnalyzer();
         
         // open the reader and searcher
-        try {
-	        reader = IndexReader.open(directory);
-	        searcher = new IndexSearcher(reader);
+        /*try {
+	        //reader = IndexReader.open(directory);
+	        //searcher = new IndexSearcher(reader);
 	    } catch ( Exception e ) {
 	        e.printStackTrace();
-	    }
+	    }*/
+        
 	    
 	    tableModel = new LookupTableModel();
 	    

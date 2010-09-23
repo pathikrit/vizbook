@@ -269,7 +269,7 @@ public class Vizster extends JFrame {
 	        registry.setGraph(g);
         } catch ( Exception e ) {
             e.printStackTrace();
-            VizsterLib.defaultError(this, "Couldn't load input graph.");
+            VizsterLib.defaultError(this, "Couldn't load input graph." + e.getMessage());
             return;
         }
         
@@ -303,7 +303,7 @@ public class Vizster extends JFrame {
     } //
     
     private void initUI() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         // recenter the display upon resizing
         display.addComponentListener(new ComponentAdapter() {

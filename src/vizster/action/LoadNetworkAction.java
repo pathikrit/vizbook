@@ -1,11 +1,11 @@
 package vizster.action;
 
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
-import javax.swing.JFileChooser;
 
 import vizster.Vizster;
 import vizster.ui.VizsterMenuBar;
@@ -18,12 +18,12 @@ import vizster.ui.VizsterMenuBar;
 @SuppressWarnings("serial")
 public class LoadNetworkAction extends AbstractAction {
 
-    private Vizster vizster;
-    private JFileChooser chooser;
+    private Vizster vizster;    
+    private FileDialog chooser;
     
     public LoadNetworkAction(Vizster vizster) {
         this.vizster = vizster;
-        chooser = new JFileChooser();
+        chooser = new FileDialog(vizster, "Choose network file");
     } //
 
     /**
@@ -34,16 +34,12 @@ public class LoadNetworkAction extends AbstractAction {
         String startUID = null;
         AbstractButton jc = (AbstractButton)arg0.getSource();
         
-        if ( VizsterMenuBar.LOAD.equals(jc.getActionCommand()) ) {
-	        // choose file to save to
-	        File f = null;
-	        int rval = chooser.showOpenDialog(vizster);
-	        if( rval == JFileChooser.APPROVE_OPTION ) {
-	           f = chooser.getSelectedFile();
-	        } else {
-	            return;
-	        }
-	        datafile = f.toString();
+        if ( VizsterMenuBar.LOAD.equals(jc.getActionCommand()) ) {        	
+        	chooser.setVisible(true);
+        	datafile = chooser.getFile();
+        	if(datafile == null)
+        		return;
+        	datafile = chooser.getDirectory() + "\\" + chooser.getFile(); //TODO: Make file separator system independent        	
         } else {
             startUID = Vizster.DEFAULT_START_UID;
         }

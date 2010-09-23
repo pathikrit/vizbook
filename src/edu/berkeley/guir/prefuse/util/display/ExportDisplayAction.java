@@ -1,5 +1,7 @@
 package edu.berkeley.guir.prefuse.util.display;
 
+import java.awt.FileDialog;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -9,7 +11,6 @@ import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import edu.berkeley.guir.prefuse.Display;
@@ -25,29 +26,25 @@ import edu.berkeley.guir.prefuse.util.io.SimpleFileFilter;
 public class ExportDisplayAction extends AbstractAction {
 
     private Display display;
-    private JFileChooser chooser;
+    private FileDialog chooser;
     private ScaleSelector scaler;
     
     public ExportDisplayAction(Display display) {
         this.display = display;
         scaler  = new ScaleSelector();
-        chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        chooser.setDialogTitle("Export Prefuse Display...");
-        chooser.setAcceptAllFileFilterUsed(false);
-        
+        chooser = new FileDialog(new Frame(), "Export Prefuse Display...");        
+                
         HashSet seen = new HashSet();
         String[] fmts = ImageIO.getWriterFormatNames();
         for ( int i=0; i<fmts.length; i++ ) {
             String s = fmts[i].toLowerCase();
             if ( s.length() == 3 && !seen.contains(s) ) {
                 seen.add(s);
-                chooser.setFileFilter(new SimpleFileFilter(s, 
-                        s.toUpperCase()+" Image (*."+s+")"));
+                //chooser.setFilenameFilter((new SimpleFileFilter(s, s.toUpperCase()+" Image (*."+s+")"));
             }
         }
         seen.clear(); seen = null;
-        chooser.setAccessory(scaler);
+        //chooser.setAccessory(scaler);
     } //
     
     /* (non-Javadoc)
@@ -57,13 +54,12 @@ public class ExportDisplayAction extends AbstractAction {
         // open image save dialog
         File f = null;
         scaler.setImage(display.getOffscreenBuffer());
-        int returnVal = chooser.showSaveDialog(display);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-           f = chooser.getSelectedFile();
-        } else {
-            return;
-        }
-        String format = ((SimpleFileFilter)chooser.getFileFilter()).getExtension();
+        chooser.setVisible(true);
+        String fileName = chooser.getFile();
+        if(fileName == null)
+        	return;
+        f = new File(fileName);
+        String format = ((SimpleFileFilter)chooser.getFilenameFilter()).getExtension();
         String ext = IOLib.getExtension(f);        
         if ( !format.equals(ext) ) {
             f = new File(f.toString()+"."+format);
