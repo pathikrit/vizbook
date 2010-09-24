@@ -2,7 +2,6 @@ package vizster.action;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
-import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
