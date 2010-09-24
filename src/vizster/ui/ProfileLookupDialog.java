@@ -21,7 +21,6 @@ import javax.swing.table.AbstractTableModel;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Hits;
@@ -60,29 +59,15 @@ public class ProfileLookupDialog extends JDialog {
     private Vizster vizster;
     private LookupTableModel tableModel;
     
-    private Directory     directory;
     private Analyzer      analyzer;
     private IndexSearcher searcher;
-    private IndexReader   reader;    
     
+    //TODO: Remove dir
     public ProfileLookupDialog(Vizster vizster, Directory dir) {
         setTitle("Profile Search");
-        
-        this.vizster = vizster;
-        directory = dir;
+        this.vizster = vizster;    
         analyzer = new StandardAnalyzer();
-        
-        // open the reader and searcher
-        /*try {
-	        //reader = IndexReader.open(directory);
-	        //searcher = new IndexSearcher(reader);
-	    } catch ( Exception e ) {
-	        e.printStackTrace();
-	    }*/
-        
-	    
 	    tableModel = new LookupTableModel();
-	    
 	    initUI();
 	    pack();
     } //
@@ -151,16 +136,10 @@ public class ProfileLookupDialog extends JDialog {
     } //
     
     public void search(String query) {
-        try {
-            Query q = MultiFieldQueryParser.parse(query, FIELDS, analyzer);
+        try {        	
+            Query q = MultiFieldQueryParser.parse(new String[]{query}, FIELDS, analyzer);
             Hits hits = searcher.search(q);
-            if ( hits.length() == 0 ) {
-                counter.setText("No Matches");
-            } else if ( hits.length() == 1 ) {
-                counter.setText("1 Match");
-            } else {
-                counter.setText(hits.length()+" Matches");
-            }
+            counter.setText(hits.length()+" Matches");
             tableModel.setHits(hits);
         } catch (ParseException e) {
             e.printStackTrace();

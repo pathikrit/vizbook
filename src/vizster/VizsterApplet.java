@@ -10,8 +10,7 @@ public class VizsterApplet extends JApplet {
 	JFrame vizster = Vizster.main("");
 
 	@Override
-	public void init() {
-		System.setProperty("disableLuceneLocks", "true");
+	public void init() {		
 		super.init();
 	}
 
