@@ -126,7 +126,7 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 	private static String clean(String s) {
 		s = s.replace("\n", " ").replaceAll("\r", " "); // Remove line breaks
 		s = s.replaceAll("\\s+", " ").trim(); //Normalize white space		
-		s = s.replaceAll("\\p{Punct}+", ",");
+		s = s.replaceAll("\\p{Punct}+", ","); //TODO: only replace < , &
 		s = Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", ""); //Remove diacriticals
 		//s = s.replaceAll("^\\p{Print}+", "?"); //Everything else becomes a question mark
 		//s = StringEscape
