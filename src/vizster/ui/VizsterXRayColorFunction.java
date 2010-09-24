@@ -70,7 +70,7 @@ public class VizsterXRayColorFunction extends ColorFunction {
     };
     
     private static final int ONE_YEAR = 365*24*60*60*1000;
-    private static final int MAX_FRIENDS = 150;
+    private static final int MAX_FRIENDS = 50; //TODO: Make this dynamic based on number of friends
     private static final int MAX_AGE = 100;
     
     private Color femaleColor = ColorLib.getColor(255,125,125);
