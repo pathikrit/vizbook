@@ -303,7 +303,7 @@ public class Vizster extends JFrame {
     } //
     
     private void initUI() {
-        //setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //TODO: Make this work in applets
         
         // recenter the display upon resizing
         display.addComponentListener(new ComponentAdapter() {

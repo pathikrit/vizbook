@@ -122,7 +122,7 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 		}
 	}
 	
-	//TODO: make this a regex
+	//TODO: make this a common regex
 	private static String clean(String s) {
 		s = s.replace("\n", " ").replaceAll("\r", " "); // Remove line breaks
 		s = s.replaceAll("\\s+", " ").trim(); //Normalize white space		
