@@ -1,5 +1,6 @@
 package vizbook.web.facebook;
 
+import java.io.IOException;
 import java.text.Normalizer;
 import java.util.*;
 
@@ -39,13 +40,15 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 	    put(ProfileField.ABOUT_ME, "about");
 	    put(ProfileField.SIGNIFICANT_OTHER_ID, "want_to_meet");
 	    put(ProfileField.PIC_SMALL, "photourl");
-	}};	
+	}};	// TODO: Make attribute names public final static enums of Vizster
 
 	@Override
 	public void fetchData() {
-		//TODO: Enforce code style		
-		int V = 0, E = 0;
+		//TODO: Enforce code style
+		final StringBuilder nodeBuilder = new StringBuilder(), edgeBuilder = new StringBuilder();
+		
 		try {
+			int V = 0, E = 0;
 			JSONArray friends = client.friends_get();
 			ArrayList<Long> friendIds = new ArrayList<Long>();
 			friendIds.add(client.users_getLoggedInUser());
@@ -55,75 +58,67 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 				friendIds.add(friends.getLong(i-1));
 			}
 			
-			write("<graph directed=\"0\">");
-			
 			JSONArray results = client.users_getInfo(friendIds, fields.keySet());
 			
 			//TODO: More informative logError(String msg, Error e)
 			for(int i = 0; i < V; i++) {				
-				try {
-					StringBuilder node = new StringBuilder();
+				try {					
 					JSONObject u = results.getJSONObject(i);
 					String name = u.getString(fields.get(ProfileField.NAME));					
 									
-					node.append("\t<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">");
+					nodeBuilder.append("\t<node id=\"" + u.getLong(ProfileField.UID.fieldName()) + "\">");
 					for(ProfileField pf : fields.keySet()) {
 						String value = u.getString(pf.fieldName());
 						if(value != null && value.length() > 0 && !value.equalsIgnoreCase("null"))
-							node.append(String.format("\n\t\t<att name=\"%s\" value=\"%s\"/>", fields.get(pf), clean(value)));
-					}		    
-					node.append("\n\t</node>");
-					
-					write(node.toString());
-					log(i + ". Processed attributes of " + name);					
-				} catch(JSONException je) {
-					logError(je.getLocalizedMessage());
-				}
-			}
-			
-			//TODO: combine node and edge into single loop; write to tempBuffer
-			log("Finished writing node attributes of " + V + " friends (including self): ");
-			log("Starting edge analysis...");
-			
-			for(int i = 0; i < V; i++) {
-				try {
-					JSONObject u = results.getJSONObject(i);		
-					String name = u.getString(fields.get(ProfileField.NAME));
+							nodeBuilder.append(String.format("\n\t\t<att name=\"%s\" value=\"%s\"/>", fields.get(pf), clean(value)));
+					}			
 					
 					long friendId = friendIds.get(i);				
 					
 					ArrayList<Long> fakeList = new ArrayList<Long>();
-					for(int j = i; j < V; j++)
+					for(int j = 0; j < V; j++)
 						fakeList.add(friendId);
 								
-					JSONArray areFriends = (JSONArray)client.friends_areFriends(fakeList, friendIds.subList(i, V));
+					JSONArray areFriends = (JSONArray)client.friends_areFriends(fakeList, friendIds);
 					int common = 0;
 					for(int j = 0; j < areFriends.length(); j++) {
-						try {
-							//TODO: Add support for nFriends
+						try {							
 							JSONObject areFriend = areFriends.getJSONObject(j);
 							if(Boolean.parseBoolean(areFriend.getString("are_friends"))) {
 								long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");
 								E++;
 								common++;
-								write(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
+								//if(j >= i)
+									edgeBuilder.append(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
 							}
 						} catch(JSONException je) {
 							logError(je.getLocalizedMessage());
 						}
 					}
-					log(String.format("%d. Processed friends of %s (%d+ common friends)", i, name, common));
+					nodeBuilder.append(String.format("\n\t\t<att name=\"%s\" value=\"%d\"/>", "nFriends", common));
+					nodeBuilder.append("\n\t</node>");
+					
+					log(String.format("%d. Processed %s (%d+ common friends)", i, name, common));
+					
 				} catch(JSONException je) {
 					logError(je.getLocalizedMessage());
 				}
 			}
 			
-			write("</graph>");			
-			log("Got " + E +  " edges");
-			
+			log("Finished writing graph of " + V + " friends (including self) and " + E + " edges");			
 		} catch(Exception e) {
 			logError(e.toString());
-		}		
+		} finally {
+			try {
+				write("<graph directed=\"0\">");
+				write(nodeBuilder.toString());
+				write(edgeBuilder.toString());
+				write("</graph>");
+			} catch (IOException e) {
+				// TODO: Re-factor these nested error catching
+				logError(e.toString());
+			}			
+		}
 	}
 	
 	//TODO: make this a regex
