@@ -85,20 +85,21 @@ public class VizsterXMLWriter extends FacebookDataImportTask {
 						try {							
 							JSONObject areFriend = areFriends.getJSONObject(j);
 							if(Boolean.parseBoolean(areFriend.getString("are_friends"))) {
-								long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");
-								E++;
+								long id1 = areFriend.getLong("uid1"), id2 = areFriend.getLong("uid2");								
 								common++;
-								//if(j >= i)
-									edgeBuilder.append(String.format("\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
+								if(j >= i) {
+									E++;
+									edgeBuilder.append(String.format("\n\t<edge source=\"%d\" target=\"%d\"></edge>", id1, id2));
+								}
 							}
 						} catch(JSONException je) {
 							logError(je.getLocalizedMessage());
 						}
 					}
-					nodeBuilder.append(String.format("\n\t\t<att name=\"%s\" value=\"%d\"/>", "nFriends", common));
+					nodeBuilder.append(String.format("\n\t\t<att name=\"%s\" value=\"%d\"/>", "nfriends", common));
 					nodeBuilder.append("\n\t</node>");
 					
-					log(String.format("%d. Processed %s (%d+ common friends)", i, name, common));
+					log(String.format("%d. Processed %s (%d common friends)", i, name, common));
 					
 				} catch(JSONException je) {
 					logError(je.getLocalizedMessage());
